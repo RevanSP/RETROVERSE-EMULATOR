@@ -7,4 +7,5 @@ export default defineConfig({
   server: {
     port: 6769, // Set the development server to use port 6969
   },
+  base: '/',
 })
