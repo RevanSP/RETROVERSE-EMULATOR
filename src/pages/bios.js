@@ -3,7 +3,47 @@ import Layout from "./layout/Layout";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-const BIOSPage = ({ bios }) => {
+const BIOSPage = () => {
+
+    const [bios, setBios] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchBiosData = async () => {
+            const apiUrl = process.env.NODE_ENV === 'development'
+                ? 'http://localhost:3000/api/bios'
+                : 'https://retroverse-emulator.vercel.app/api/bios';
+
+            const headers = process.env.NODE_ENV === 'production'
+                ? { Authorization: process.env.NEXT_PUBLIC_API_TOKEN }
+                : {};
+
+            try {
+                const res = await fetch(apiUrl, { headers });
+                const biosData = await res.json();
+
+                if (!biosData) {
+                    throw new Error('No data received');
+                }
+
+                const dataArray = Array.isArray(biosData) ? biosData : biosData.data;
+
+                if (!Array.isArray(dataArray)) {
+                    throw new Error(`Invalid data format. Received: ${JSON.stringify(biosData).slice(0, 100)}...`);
+                }
+
+                setBios(dataArray);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchBiosData();
+    }, []);
+
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 15;
@@ -96,8 +136,20 @@ const BIOSPage = ({ bios }) => {
                                         </tr>
                                     </thead>
                                     <tbody className="text-black">
-                                        {paginateGames().length > 0 ? (
-                                            paginateGames().map((bio, index) => (
+                                        {loading ? (
+                                            <tr>
+                                                <td colSpan="3" className="text-center py-3">
+                                                    Loading...
+                                                </td>
+                                            </tr>
+                                        ) : error ? (
+                                            <tr>
+                                                <td colSpan="3" className="text-center py-3">
+                                                    Error: {error}
+                                                </td>
+                                            </tr>
+                                        ) : bios.length > 0 ? (
+                                            bios.map((bio, index) => (
                                                 <tr key={index}>
                                                     <td>{bio.title}</td>
                                                     <td>{bio.size}</td>
@@ -177,47 +229,3 @@ const BIOSPage = ({ bios }) => {
 };
 
 export default BIOSPage;
-
-export async function getStaticProps() {
-    const apiUrl = process.env.NODE_ENV === 'development'
-        ? 'http://localhost:3000/api/bios'
-        : 'https://retroverse-emulator.vercel.app/api/bios';
-
-    const headers = process.env.NODE_ENV === 'production'
-        ? { Authorization: process.env.NEXT_PUBLIC_API_TOKEN }
-        : {};
-
-    try {
-        const res = await fetch(apiUrl, { headers });
-        const biosData = await res.json();
-
-        console.log('Response status:', res.status);
-        console.log('Data type:', typeof biosData);
-        console.log('Is array:', Array.isArray(biosData));
-
-        if (!biosData) {
-            throw new Error('No data received');
-        }
-
-        const dataArray = Array.isArray(biosData) ? biosData : biosData.data;
-
-        if (!Array.isArray(dataArray)) {
-            throw new Error(`Invalid data format. Received: ${JSON.stringify(biosData).slice(0, 100)}...`);
-        }
-
-        return {
-            props: {
-                bios: dataArray
-            },
-            revalidate: 86400
-        };
-    } catch (error) {
-        console.error('Error fetching BIOS data:', error);
-        return {
-            props: {
-                bios: [],
-                error: error.message
-            }
-        };
-    }
-}
