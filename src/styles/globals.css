@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;700&display=swap');
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .overflow-x-auto {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.fade-out {
+  animation: fade-out 1.5s ease forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: #f87171;
+  }
+
+  33% {
+    background-color: #fbbf24;
+  }
+
+  66% {
+    background-color: #3b82f6;
+  }
+
+  100% {
+    background-color: #f87171;
+  }
+}
+
+.color-change {
+  animation: colorChange 6s ease-in-out infinite;
+}
