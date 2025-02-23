@@ -269,7 +269,8 @@ const Layout = ({ children }) => {
     try {
       const response = await fetch("/api/changes", {
         headers: {
-          Authorization: process.env.NEXT_PUBLIC_API_TOKEN,
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          'Authorization': process.env.NEXT_PUBLIC_API_TOKEN,
         },
       });
       if (!response.ok) throw new Error("Network response was not ok");
