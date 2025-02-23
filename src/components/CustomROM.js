@@ -42,7 +42,6 @@ const CustomROM = () => {
             const fetchJSON = async (endpoint) => {
                 const res = await fetch(`${baseUrl}/${endpoint}`, {
                     headers: {
-                        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
                         'Authorization': process.env.NEXT_PUBLIC_API_TOKEN,
                     },
                 });

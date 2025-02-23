@@ -11,28 +11,24 @@ const BIOSPage = () => {
 
     useEffect(() => {
         const fetchBiosData = async () => {
-            const apiUrl = process.env.NODE_ENV === 'development'
-                ? 'http://localhost:3000/api/bios'
-                : 'https://retroverse-emulator.vercel.app/api/bios';
-
-            const headers = process.env.NODE_ENV === 'production'
+            const headers = process.env.NODE_ENV === 'production' 
                 ? { Authorization: process.env.NEXT_PUBLIC_API_TOKEN }
-                : {};
-
+                : {}; 
+    
             try {
-                const res = await fetch(apiUrl, { headers });
+                const res = await fetch('/api/bios', { headers });
                 const biosData = await res.json();
-
+    
                 if (!biosData) {
                     throw new Error('No data received');
                 }
-
+    
                 const dataArray = Array.isArray(biosData) ? biosData : biosData.data;
-
+    
                 if (!Array.isArray(dataArray)) {
                     throw new Error(`Invalid data format. Received: ${JSON.stringify(biosData).slice(0, 100)}...`);
                 }
-
+    
                 setBios(dataArray);
             } catch (error) {
                 setError(error.message);
@@ -40,7 +36,7 @@ const BIOSPage = () => {
                 setLoading(false);
             }
         };
-
+    
         fetchBiosData();
     }, []);
 
@@ -148,8 +144,8 @@ const BIOSPage = () => {
                                                     Error: {error}
                                                 </td>
                                             </tr>
-                                        ) : bios.length > 0 ? (
-                                            bios.map((bio, index) => (
+                                        ) : paginateGames().length > 0 ? (
+                                            paginateGames().map((bio, index) => (
                                                 <tr key={index}>
                                                     <td>{bio.title}</td>
                                                     <td>{bio.size}</td>
