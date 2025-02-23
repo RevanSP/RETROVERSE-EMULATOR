@@ -130,16 +130,16 @@ const BIOSPage = ({ bios }) => {
                             </div>
                             <div className="join mt-4 flex justify-center gap-2">
                                 <button
-                                    className={`join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black ${currentPage === 1 || isSearchActive ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-400 hover:border-black'}`}
+                                    className={`join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black ${currentPage === 1 || isSearchActive || paginateGames().length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-400 hover:border-black'}`}
                                     onClick={handleFirstPage}
-                                    disabled={currentPage === 1 || isSearchActive}
+                                    disabled={currentPage === 1 || isSearchActive || paginateGames().length === 0}
                                 >
                                     <i className="bi bi-chevron-double-left"></i>
                                 </button>
                                 <button
-                                    className={`join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black ${currentPage === 1 || isSearchActive ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-600 hover:border-black'}`}
+                                    className={`join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black ${currentPage === 1 || isSearchActive || paginateGames().length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-600 hover:border-black'}`}
                                     onClick={handlePreviousPage}
-                                    disabled={currentPage === 1 || isSearchActive}
+                                    disabled={currentPage === 1 || isSearchActive || paginateGames().length === 0}
                                 >
                                     <i className="bi bi-chevron-left"></i>
                                 </button>
@@ -148,22 +148,22 @@ const BIOSPage = ({ bios }) => {
                                         key={page}
                                         className={`join-item btn btn-xs btn-square border-2 border-black text-black ${currentPage === page ? 'btn-active' : 'bg-yellow-400 hover:bg-red-600'}`}
                                         onClick={() => handlePageChange(page)}
-                                        disabled={isSearchActive}
+                                        disabled={isSearchActive || paginateGames().length === 0}
                                     >
                                         {page}
                                     </button>
                                 ))}
                                 <button
-                                    className={`join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black ${currentPage === totalPages || isSearchActive ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-600 hover:border-black'}`}
+                                    className={`join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black ${currentPage === totalPages || isSearchActive || paginateGames().length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-600 hover:border-black'}`}
                                     onClick={handleNextPage}
-                                    disabled={currentPage === totalPages || isSearchActive}
+                                    disabled={currentPage === totalPages || isSearchActive || paginateGames().length === 0}
                                 >
                                     <i className="bi bi-chevron-right"></i>
                                 </button>
                                 <button
-                                    className={`join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black ${currentPage === totalPages || isSearchActive ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-400 hover:border-black'}`}
+                                    className={`join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black ${currentPage === totalPages || isSearchActive || paginateGames().length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-400 hover:border-black'}`}
                                     onClick={handleLastPage}
-                                    disabled={currentPage === totalPages || isSearchActive}
+                                    disabled={currentPage === totalPages || isSearchActive || paginateGames().length === 0}
                                 >
                                     <i className="bi bi-chevron-double-right"></i>
                                 </button>
@@ -181,7 +181,7 @@ export default BIOSPage;
 export async function getStaticProps() {
     const apiUrl = process.env.NODE_ENV === 'development'
         ? 'http://localhost:3000/api/bios'
-        : 'https://retroverse-remake.vercel.app/api/bios';
+        : 'https://retroverse-emulator.vercel.app/api/bios';
 
     const headers = process.env.NODE_ENV === 'production'
         ? { Authorization: process.env.NEXT_PUBLIC_API_TOKEN }
@@ -191,11 +191,33 @@ export async function getStaticProps() {
         const res = await fetch(apiUrl, { headers });
         const biosData = await res.json();
 
-        if (!Array.isArray(biosData)) throw new Error('Data yang diterima bukan array');
+        console.log('Response status:', res.status);
+        console.log('Data type:', typeof biosData);
+        console.log('Is array:', Array.isArray(biosData));
 
-        return { props: { bios: biosData }, revalidate: 86400 };
+        if (!biosData) {
+            throw new Error('No data received');
+        }
+
+        const dataArray = Array.isArray(biosData) ? biosData : biosData.data;
+
+        if (!Array.isArray(dataArray)) {
+            throw new Error(`Invalid data format. Received: ${JSON.stringify(biosData).slice(0, 100)}...`);
+        }
+
+        return {
+            props: {
+                bios: dataArray
+            },
+            revalidate: 86400
+        };
     } catch (error) {
         console.error('Error fetching BIOS data:', error);
-        return { props: { bios: [] } };
+        return {
+            props: {
+                bios: [],
+                error: error.message
+            }
+        };
     }
 }

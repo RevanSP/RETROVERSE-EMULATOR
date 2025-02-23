@@ -10,7 +10,7 @@ const GamePage = () => {
     const bgImageURL = isClient 
         ? (window.location.hostname === 'localhost' 
             ? 'http://localhost:3000/easter-egg/bg-play.jpg' 
-            : 'https://retroverse-remake.vercel.app/easter-egg/bg-play.jpg') 
+            : 'https://retroverse-emulator.vercel.app/easter-egg/bg-play.jpg') 
         : '';
 
     useEffect(() => {
