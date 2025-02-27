@@ -292,6 +292,12 @@ const Layout = ({ children }) => {
     if (localStorage.getItem("hasSeenChanges") === "true") setIsRedDotVisible(false);
   }, []);
 
+  useEffect(() => {
+    if (router.pathname === '/layout/Layout') {
+      router.push('/');
+    }
+  }, [router]);
+
   return (
     <>
       <dialog id="changes" className="modal">
