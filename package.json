@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "postbuild": "next-sitemap --config next-sitemap-config.js"
+    "dev": "bun next dev --turbopack",
+    "build": "bun next build",
+    "start": "bun next start",
+    "lint": "bun next lint",
+    "postbuild": "bun next-sitemap --config next-sitemap-config.js"
   },
   "dependencies": {
     "@uploadthing/react": "^7.3.0",
