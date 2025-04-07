@@ -247,7 +247,7 @@ const Layout = ({ children }) => {
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
-  const images = ["/characters/Miku.avif", "/easter-egg/mikus.png"]
+  const images = ["/characters/Miku.avif", "/easter-egg/mikus.avif"]
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -449,7 +449,7 @@ const Layout = ({ children }) => {
           <h3 className="font-bold text-lg">LOGIN | DEV ZONE</h3>
           <div className="flex items-center justify-center mb-6 mt-3">
             <Image
-              src="/brands/retroverse.png"
+              src="/brands/retroverse.avif"
               className="w-96 py-12 lg:py-16"
               alt="Logo"
               width={0}
@@ -502,7 +502,7 @@ const Layout = ({ children }) => {
             </button>
           </div>
           <div className="navbar-center">
-            <a className="btn btn-ghost text-xl"><Image src="/brands/retroverse.png" width={0} height={0} sizes="100vw" alt="Brand" className="w-40" /></a>
+            <a className="btn btn-ghost text-xl"><Image src="/brands/retroverse.avif" width={0} height={0} sizes="100vw" alt="Brand" className="w-40" /></a>
           </div>
           <div className="navbar-end">
             <div className="dropdown dropdown-end">
@@ -530,12 +530,12 @@ const Layout = ({ children }) => {
           </div>
         </div>
         {isHomePage && (
-          <div className="hero relative mt-16 min-h-screen" style={{ backgroundImage: "url(/assets/herosection.gif)" }}>
+          <div className="hero relative mt-16 min-h-screen" style={{ backgroundImage: "url(/assets/herosection.avif)" }}>
             <div className="absolute inset-0 bg-black opacity-70"></div>
             <div className="py-14 hero-content text-neutral-content text-center relative">
               <div className="max-w-md text-center relative mb-40 md:mb-28">
                 <Image
-                  src="/brands/retroverse.png"
+                  src="/brands/retroverse.avif"
                   width={0}
                   height={0}
                   sizes="100vw"
@@ -578,7 +578,7 @@ const Layout = ({ children }) => {
                       width={0}
                       height={0}
                       sizes="100vw"
-                      src="/assets/verified.webp"
+                      src="/assets/verified.avif"
                       alt="Brand"
                       className="w-5 mb-0.5"
                     />
@@ -614,7 +614,7 @@ const Layout = ({ children }) => {
               width={0}
               height={0}
               sizes="100vw"
-              src="/easter-egg/knuckles.gif"
+              src="/easter-egg/knuckles.avif"
               alt="Knuckles"
               className="mr-1.5 h-16 mt-1 w-full"
               unoptimized
@@ -623,7 +623,7 @@ const Layout = ({ children }) => {
               width={0}
               height={0}
               sizes="100vw"
-              src="/easter-egg/tails.gif"
+              src="/easter-egg/tails.avif"
               alt="Tails"
               className="h-16 mt-1 w-full"
               unoptimized
@@ -632,7 +632,7 @@ const Layout = ({ children }) => {
               width={0}
               height={0}
               sizes="100vw"
-              src="/easter-egg/sonic.gif"
+              src="/easter-egg/sonic.avif"
               alt="Sonic"
               className="h-16 mt-1.5 w-full"
               unoptimized
@@ -642,7 +642,7 @@ const Layout = ({ children }) => {
             <Image
               width={0}
               height={0}
-              src="/easter-egg/eggman.gif"
+              src="/easter-egg/eggman.avif"
               alt="Eggman"
               className="h-24 w-full"
               unoptimized

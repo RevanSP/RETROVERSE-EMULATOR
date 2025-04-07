@@ -30,7 +30,7 @@ export const systems = [
     { "system": "segaMS", "alias": "Sega Master System", "image": "Tikal.avif", "firestoreDocId": "segaMS.json", "cores": ["smsplus"] },
     { "system": "segaSaturn", "alias": "Sega Saturn", "image": "Ulala.avif", "firestoreDocId": "segaSaturn.json", "cores": ["yabause"] },
     { "system": "snes", "alias": "Super Nintendo Entertainment System", "image": "Wave.avif", "firestoreDocId": "snes.json", "cores": ["snes9x"] },
-    { "system": "vb", "alias": "Virtual Boy", "image": "Amigo.png", "firestoreDocId": "vb.json", "cores": ["beetle_vb"] },
-    { "system": "vic20", "alias": "Commodore VIC-20", "image": "Billy.png", "firestoreDocId": "", "cores": ["vice_xvic"] },
-    { "system": "ws", "alias": "WonderSwan", "image": "Cosmo.png", "firestoreDocId": "ws.json", "cores": ["mednafen_wswan"] }
+    { "system": "vb", "alias": "Virtual Boy", "image": "Amigo.avif", "firestoreDocId": "vb.json", "cores": ["beetle_vb"] },
+    { "system": "vic20", "alias": "Commodore VIC-20", "image": "Billy.avif", "firestoreDocId": "", "cores": ["vice_xvic"] },
+    { "system": "ws", "alias": "WonderSwan", "image": "Cosmo.avif", "firestoreDocId": "ws.json", "cores": ["mednafen_wswan"] }
 ];

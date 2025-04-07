@@ -208,22 +208,35 @@ const SystemPage = ({ systemData, games, totalGames }) => {
 };
 
 export async function getStaticPaths() {
+    console.log('Generating static paths...');
+    const paths = systems.map(system => ({ params: { system: system.system } }));
+    console.log('Generated paths:', paths);
     return {
-        paths: systems.map(system => ({ params: { system: system.system } })),
+        paths,
         fallback: false,
     };
 }
 
 export async function getStaticProps({ params }) {
-    const systemData = systems.find(item => item.system === params.system);
+    console.log('Fetching data for system:', params.system);
 
-    if (!systemData) return { notFound: true };
+    const systemData = systems.find(item => item.system === params.system);
+    console.log('System data found:', systemData);
+
+    if (!systemData) {
+        console.log(`System ${params.system} not found in the systems list.`);
+        return { notFound: true };
+    }
 
     try {
+        console.log(`Fetching data from Firestore for system: ${params.system} (Firestore Doc ID: ${systemData.firestoreDocId})`);
         const docSnap = await getDoc(doc(db, "json_files", systemData.firestoreDocId));
+
         const games = docSnap.exists()
             ? JSON.parse(atob(docSnap.data().fileBase64))
             : [];
+
+        console.log(`Fetched ${games.length} games for system: ${params.system}`);
 
         return {
             props: {

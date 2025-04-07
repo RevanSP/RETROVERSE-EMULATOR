@@ -163,7 +163,7 @@ const EmulatorPage = () => {
                   <div className="card-body relative z-10 flex justify-center items-center h-full">
                     <div
                       className="absolute inset-0 bg-cover bg-center opacity-30 filter grayscale"
-                      style={{ backgroundImage: 'url(/easter-egg/sonic-miku.webp)', backgroundPosition: "center top 10%" }}
+                      style={{ backgroundImage: 'url(/easter-egg/sonic-miku.avif)', backgroundPosition: "center top 10%" }}
                     ></div>
                     <div className="flex flex-col items-center z-50">
                       <span className="text-center font-extrabold lg:text-lg text-xs text-black">IMPORT ROM (CUSTOM)</span>

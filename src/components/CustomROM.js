@@ -245,7 +245,7 @@ const CustomROM = () => {
     return (
         <>
             <div className="card rounded-lg bg-blue-500 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] w-full relative" >
-                <div className="absolute inset-0 z-0 translate-y-3 bg-cover bg-center opacity-25 grayscale bg-[url('/easter-egg/mikus1.png')]">
+                <div className="absolute inset-0 z-0 translate-y-3 bg-cover bg-center opacity-25 grayscale bg-[url('/easter-egg/mikus1.avif')]">
                 </div>
                 <div className="card-body p-6 relative">
                     <div className="rounded-lg shadow-lg w-full max-w-2xl">

@@ -38,7 +38,7 @@ const ROMPage = () => {
     }, [searchQuery]);
 
     const getDefaultBackground = () => {
-        return "url(/characters/Infinite.png)";
+        return "url(/unused/Infinite.avif)";
     };
 
     const sortedSystems = filteredSystems.sort((a, b) => {
