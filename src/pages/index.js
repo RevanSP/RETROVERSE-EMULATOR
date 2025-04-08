@@ -93,7 +93,7 @@ export default function Home() {
             >
               {brandItems.map((brand, index) => (
                 <div key={index} className="flex items-center justify-center w-[200px] h-24 mx-4 flex-shrink-0">
-                  <Image width={0} height={0} sizes="100vw" src={brand.logo || "/placeholder.svg"} alt={brand.name} className="max-w-full max-h-full w-full rounded-lg" />
+                  <Image unoptimized width={0} height={0} sizes="100vw" src={brand.logo || "/placeholder.svg"} alt={brand.name} className="max-w-full max-h-full w-full rounded-lg" />
                 </div>
               ))}
             </div>

@@ -397,7 +397,7 @@ const Layout = ({ children }) => {
               >
                 <div className="avatar mb-5">
                   <div className="ring-black ring-offset-white bg-gradient-to-r from-red-600 via-yellow-400 to-blue-500 w-24 rounded-full ring ring-offset-2">
-                    <Image width={0} height={0} sizes="100vw" src={contributor.avatar} alt={contributor.name} />
+                    <Image unoptimized width={0} height={0} sizes="100vw" src={contributor.avatar} alt={contributor.name} />
                   </div>
                 </div>
                 <span className="badge py-3 rounded-full bg-white text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
@@ -415,7 +415,7 @@ const Layout = ({ children }) => {
                     {row.map((user, userIndex) => (
                       <div key={userIndex} className="avatar border-black">
                         <div className="w-20 bg-gradient-to-r from-blue-500 via-yellow-400 to-red-600 md:w-9">
-                          <Image src={user.avatar} alt={user.name} width={0} height={0} sizes="100vw" />
+                          <Image unoptimized src={user.avatar} alt={user.name} width={0} height={0} sizes="100vw" />
                         </div>
                       </div>
                     ))}
@@ -448,7 +448,7 @@ const Layout = ({ children }) => {
           </form>
           <h3 className="font-bold text-lg">LOGIN | DEV ZONE</h3>
           <div className="flex items-center justify-center mb-6 mt-3">
-            <Image
+            <Image unoptimized
               src="/brands/retroverse.avif"
               className="w-96 py-12 lg:py-16"
               alt="Logo"
@@ -502,7 +502,7 @@ const Layout = ({ children }) => {
             </button>
           </div>
           <div className="navbar-center">
-            <a className="btn btn-ghost text-xl"><Image src="/brands/retroverse.avif" width={0} height={0} sizes="100vw" alt="Brand" className="w-40" /></a>
+            <a className="btn btn-ghost text-xl"><Image unoptimized src="/brands/retroverse.avif" width={0} height={0} sizes="100vw" alt="Brand" className="w-40" /></a>
           </div>
           <div className="navbar-end">
             <div className="dropdown dropdown-end">
@@ -534,7 +534,7 @@ const Layout = ({ children }) => {
             <div className="absolute inset-0 bg-black opacity-70"></div>
             <div className="py-14 hero-content text-neutral-content text-center relative">
               <div className="max-w-md text-center relative mb-40 md:mb-28">
-                <Image
+                <Image unoptimized
                   src="/brands/retroverse.avif"
                   width={0}
                   height={0}
@@ -574,7 +574,7 @@ const Layout = ({ children }) => {
                 </div>
                 <div className="flex justify-center items-center mt-6 cursor-pointer" onClick={() => document.getElementById('contributors').showModal()}>
                   <span className="badge text-xs badge-lg py-5 px-4 text-black rounded-full border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] bg-white">
-                    <Image
+                    <Image unoptimized
                       width={0}
                       height={0}
                       sizes="100vw"
@@ -590,7 +590,7 @@ const Layout = ({ children }) => {
                     {data.contributors.slice(0, 3).map((user, index) => (
                       <div key={index} className="avatar border-0.5 border-white cursor-pointer">
                         <div className="w-14 color-change">
-                          <Image width={0} height={0} sizes="100vw" src={user.avatar} alt={user.name} />
+                          <Image unoptimized width={0} height={0} sizes="100vw" src={user.avatar} alt={user.name} />
                         </div>
                       </div>
                     ))}

@@ -166,7 +166,7 @@ const SystemPage = ({ games }) => {
                                     <div className="w-1/3 flex-shrink-0">
                                         <div className="relative w-full rounded-lg overflow-hidden">
                                             <div className="w-full bg-blue-500 p-1.5 rounded-lg border-2 border-black">
-                                                <Image
+                                                <Image unoptimized
                                                     width={0}
                                                     height={0}
                                                     sizes="100vw"
@@ -304,7 +304,7 @@ const SystemPage = ({ games }) => {
                             <div key={game.title} className="card rounded-lg bg-blue-500 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
                                 <div className="card-body p-3">
                                     <div className="relative w-full">
-                                        <Image
+                                        <Image unoptimized
                                             src={game.cover}
                                             alt={game.title}
                                             width={0}

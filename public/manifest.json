@@ -3,14 +3,14 @@
     "name": "RETROVERSE EMULATOR",
     "icons": [
       {
-        "src": "/assets/favicon.png",
+        "src": "/assets/favicon.webp",
         "sizes": "192x192",
-        "type": "image/png"
+        "type": "image/webp"
       },
       {
-        "src": "/assets/favicon.png",
+        "src": "/assets/favicon.webp",
         "sizes": "512x512",
-        "type": "image/png"
+        "type": "image/webp"
       }
     ],
     "start_url": "/",
