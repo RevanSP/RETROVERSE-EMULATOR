@@ -6,6 +6,7 @@ import Gamepad from '@/components/Gamepad';
 import { db, collection, query, where, getDocs } from '@/lib/firebase';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { BsArrowClockwise, BsCheckCircle, BsChevronDoubleLeft, BsChevronDoubleRight, BsChevronLeft, BsChevronRight, BsController, BsGear, BsHouseDoor, BsInfoCircle, BsJoystick, BsPlayFill, BsXCircle } from "react-icons/bs";
 
 const SystemPage = ({ games }) => {
     const router = useRouter();
@@ -245,18 +246,18 @@ const SystemPage = ({ games }) => {
                             <ul>
                                 <li>
                                     <Link href="/">
-                                        <i className="bi bi-house-door"></i>&nbsp;
+                                        <BsHouseDoor />&nbsp;
                                         Home
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/emulator">
-                                        <i className="bi bi-joystick"></i>&nbsp;
+                                        <BsJoystick />&nbsp;
                                         Emulator
                                     </Link>
                                 </li>
                                 <li>
-                                    <i className="bi bi-gear"></i>&nbsp;&nbsp;
+                                    <BsGear />&nbsp;&nbsp;
                                     {currentSystem?.alias || 'Loading...'}
                                 </li>
                             </ul>
@@ -276,26 +277,30 @@ const SystemPage = ({ games }) => {
                                 onClick={handleRefresh}
                                 className="btn btn-sm text-xs join-item border-2 border-black bg-red-600 rounded text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-500 hover:border-black btn-square"
                             >
-                                <i className="bi bi-arrow-clockwise"></i>
+                                <BsArrowClockwise />
                             </button>
-                            <button onClick={() => document.getElementById('controller').showModal()} className="btn btn-sm text-xs join-item border-2 border-black bg-blue-500 rounded text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-yellow-400 hover:border-black btn-square"><i className="bi bi-controller"></i></button>
+                            <button onClick={() => document.getElementById('controller').showModal()} className="btn btn-sm text-xs join-item border-2 border-black bg-blue-500 rounded text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-yellow-400 hover:border-black btn-square">
+                                <BsController />
+                            </button>
                             <button
                                 className="btn btn-sm text-xs join-item border-2 border-black bg-yellow-400 rounded text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-500 hover:border-black btn-square tooltip tooltip-left"
                                 data-tip={isControllerConnected ? "CONTROLLER CONNECTED" : "CONTROLLER DISCONNECTED"}
                             >
-                                <i className={isControllerConnected ? "bi bi-check-circle" : "bi bi-x-circle"}></i>
+                                {isControllerConnected ? <BsCheckCircle /> : <BsXCircle />}
                             </button>
                         </div>
                     </div>
+
                     {noResults && (
                         <div role="alert" className="alert bg-yellow-400 border-2 text-black border-black rounded shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] mt-4">
-                            <i className="bi bi-info-circle text-xl"></i>
+                            <BsInfoCircle className="text-xl" />
                             <span className="text-xs">No games found matching your search.</span>
                         </div>
                     )}
+
                     {noGamesInSystem && !searchQuery && (
                         <div role="alert" className="alert bg-yellow-400 border-2 text-black border-black rounded shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] mt-4">
-                            <i className="bi bi-info-circle text-xl"></i>
+                            <BsInfoCircle className="text-xl" />
                             <span className="text-xs">No games available in this system.</span>
                         </div>
                     )}
@@ -324,7 +329,7 @@ const SystemPage = ({ games }) => {
                                         onClick={() => handleOpenModal(game)}
                                         className="btn bg-yellow-400 border-2 border-black rounded text-black hover:bg-red-600 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] btn-sm flex-1 hover:border-black"
                                     >
-                                        <i className="bi bi-play-fill"></i>&nbsp;PLAY
+                                        <BsPlayFill />&nbsp;PLAY
                                     </button>
                                 </div>
                             </div>
@@ -337,14 +342,14 @@ const SystemPage = ({ games }) => {
                                 className="join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black hover:bg-yellow-400 hover:border-black disabled:opacity-50"
                                 disabled={currentPage === 1}
                             >
-                                <i className="bi bi-chevron-double-left"></i>
+                                <BsChevronDoubleLeft />
                             </button>
                             <button
                                 onClick={handlePrevPage}
                                 className="join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black hover:bg-red-600 hover:border-black disabled:opacity-50"
                                 disabled={currentPage === 1}
                             >
-                                <i className="bi bi-chevron-left"></i>
+                                <BsChevronLeft />
                             </button>
 
                             {paginationButtons.map((page) => (
@@ -365,14 +370,14 @@ const SystemPage = ({ games }) => {
                                 className="join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black hover:bg-red-600 hover:border-black disabled:opacity-50"
                                 disabled={currentPage === totalPages}
                             >
-                                <i className="bi bi-chevron-right"></i>
+                                <BsChevronRight />
                             </button>
                             <button
                                 onClick={() => handlePageChange(totalPages)}
                                 className="join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black hover:bg-yellow-400 hover:border-black disabled:opacity-50"
                                 disabled={currentPage === totalPages}
                             >
-                                <i className="bi bi-chevron-double-right"></i>
+                                <BsChevronDoubleRight />
                             </button>
                         </div>
                     )}
@@ -399,15 +404,15 @@ export async function getStaticProps({ params }) {
     games.sort((a, b) => {
         const aMatch = a.title.match(/\d+/);
         const bMatch = b.title.match(/\d+/);
-        
+
         if (aMatch && bMatch) {
             const aNum = parseInt(aMatch[0]);
             const bNum = parseInt(bMatch[0]);
             if (aNum !== bNum) {
-                return aNum - bNum; 
+                return aNum - bNum;
             }
         }
-        
+
         return a.title.localeCompare(b.title);
     });
 

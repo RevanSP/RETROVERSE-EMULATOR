@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import Layout from "./layout/Layout";
 import Link from "next/link";
 import Head from 'next/head';
+import { BsChevronDoubleLeft, BsChevronDoubleRight, BsChevronLeft, BsChevronRight, BsController, BsDownload, BsHouseDoor, BsPencil, BsPlusCircleDotted, BsSdCard, BsSearch, BsTrash, BsXCircle } from 'react-icons/bs';
 
 const MemoryPage = () => {
   const [activeTab, setActiveTab] = useState('save-games');
@@ -457,7 +458,7 @@ const MemoryPage = () => {
             </form>
             <h3 className="font-bold text-lg mb-5">ADD SAVE STATES</h3>
             <label className="input input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black bg-base-200 mb-3">
-              <i className="bi bi-controller"></i>
+              <BsController />
               <input
                 type="text"
                 required
@@ -507,7 +508,7 @@ const MemoryPage = () => {
             </form>
             <h3 className="font-bold text-lg mb-5">UPDATE SAVE GAMES</h3>
             <label className="input input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black bg-base-200 mb-3">
-              <i className="bi bi-controller"></i>
+              <BsController />
               <input
                 type="text"
                 required
@@ -560,7 +561,7 @@ const MemoryPage = () => {
             </form>
             <h3 className="font-bold text-lg mb-5">UPDATE SAVE GAMES</h3>
             <label className="input input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black bg-base-200 mb-3">
-              <i className="bi bi-controller"></i>
+              <BsController />
               <input
                 type="text"
                 required
@@ -633,7 +634,7 @@ const MemoryPage = () => {
             </form>
             <h3 className="font-bold text-lg mb-5">ADD SAVE GAMES</h3>
             <label className="input input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black bg-base-200 mb-3">
-              <i className="bi bi-controller"></i>
+              <BsController />
               <input
                 type="text"
                 required
@@ -683,13 +684,13 @@ const MemoryPage = () => {
                 <ul>
                   <li>
                     <Link href="/">
-                      <i className="bi bi-house-door"></i>&nbsp;
+                      <BsHouseDoor />&nbsp;
                       Home
                     </Link>
                   </li>
                   <li>
                     <Link href="/emulator">
-                      <i className="bi bi-sd-card"></i>&nbsp;
+                      <BsSdCard />&nbsp;
                       Memory
                     </Link>
                   </li>
@@ -723,14 +724,14 @@ const MemoryPage = () => {
                       value={searchTerm}
                       onChange={handleSearchChange}
                     />
-                    <i className="bi bi-search"></i>
+                    <BsSearch />
                   </label>
                   <button
                     className={`btn btn-sm btn-square text-black bg-red-600 hover:bg-yellow-400 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-none`}
                     onClick={handleDeleteSelectedClick}
                     disabled={isDeleteDisabled}
                   >
-                    <i className="bi bi-x-circle"></i>
+                    <BsXCircle />
                   </button>
                   <button
                     onClick={() => {
@@ -741,7 +742,7 @@ const MemoryPage = () => {
                     }}
                     className={`btn btn-sm btn-square text-black bg-yellow-400 hover:bg-red-600 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-l-none rounded-r`}
                   >
-                    <i className="bi bi-plus-circle-dotted"></i>
+                    <BsPlusCircleDotted />
                   </button>
                 </div>
                 <div className="overflow-x-auto">
@@ -795,7 +796,7 @@ const MemoryPage = () => {
                                   onClick={() => handleDownload(game, selectedSlots[game.title])}
                                   disabled={!selectedSlots[game.title] || !game.slotSave[selectedSlots[game.title]]}
                                 >
-                                  <i className="bi bi-download"></i>
+                                  <BsDownload />
                                 </button>
                               </div>
                               <div className="join">
@@ -803,13 +804,13 @@ const MemoryPage = () => {
                                   className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-yellow-400 hover:bg-red-600 hover:border-black text-black btn-square"
                                   onClick={() => handleEditClick(game)}
                                 >
-                                  <i className="bi bi-pencil"></i>
+                                  <BsPencil />
                                 </button>
                                 <button
                                   className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-red-600 hover:bg-yellow-400 hover:border-black text-black btn-square"
                                   onClick={() => handleDeleteClick(game.title)}
                                 >
-                                  <i className="bi bi-trash"></i>
+                                  <BsTrash />
                                 </button>
                               </div>
                             </td>
@@ -845,14 +846,14 @@ const MemoryPage = () => {
                     onClick={handleFirstPage}
                     disabled={paginateGames().length === 0}
                   >
-                    <i className="bi bi-chevron-double-left"></i>
+                    <BsChevronDoubleLeft />
                   </button>
                   <button
                     className={`join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black ${paginateGames().length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-600 hover:border-black'}`}
                     onClick={handlePreviousPage}
                     disabled={paginateGames().length === 0}
                   >
-                    <i className="bi bi-chevron-left"></i>
+                    <BsChevronLeft />
                   </button>
                   {displayedPages.map((page) => (
                     <button
@@ -869,14 +870,14 @@ const MemoryPage = () => {
                     onClick={handleNextPage}
                     disabled={paginateGames().length === 0}
                   >
-                    <i className="bi bi-chevron-right"></i>
+                    <BsChevronRight />
                   </button>
                   <button
                     className={`join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black ${paginateGames().length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-400 hover:border-black'}`}
                     onClick={handleLastPage}
                     disabled={paginateGames().length === 0}
                   >
-                    <i className="bi bi-chevron-double-right"></i>
+                    <BsChevronDoubleRight />
                   </button>
                 </div>
               </div>
@@ -892,14 +893,14 @@ const MemoryPage = () => {
                       value={searchStateTerm}
                       onChange={handleSearchStatesChange}
                     />
-                    <i className="bi bi-search"></i>
+                    <BsSearch />
                   </label>
                   <button
                     className={`btn btn-sm btn-square text-black bg-red-600 hover:bg-yellow-400 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-none`}
                     disabled={selectedStateGames.size < 2}
                     onClick={handleDeleteSelected}
                   >
-                    <i className="bi bi-x-circle"></i>
+                    <BsXCircle />
                   </button>
                   <button onClick={() => {
                     setGameTitle('');
@@ -908,7 +909,7 @@ const MemoryPage = () => {
                   }}
                     className={`btn btn-sm btn-square text-black bg-yellow-400 hover:bg-red-600 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-l-none rounded-r`}
                   >
-                    <i className="bi bi-plus-circle-dotted"></i>
+                    <BsPlusCircleDotted />
                   </button>
                 </div>
                 <div className="overflow-x-auto">
@@ -960,7 +961,7 @@ const MemoryPage = () => {
                                   onClick={() => handleDownload(game, selectedStateSlots[game.title])}
                                   disabled={!selectedStateSlots[game.title] || !game.slotSave[selectedStateSlots[game.title]]}
                                 >
-                                  <i className="bi bi-download"></i>
+                                  <BsDownload />
                                 </button>
                               </div>
                               <div className="join">
@@ -968,13 +969,13 @@ const MemoryPage = () => {
                                   className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-yellow-400 hover:bg-red-600 hover:border-black text-black btn-square"
                                   onClick={() => handleEdit(game, index)}
                                 >
-                                  <i className="bi bi-pencil"></i>
+                                  <BsPencil />
                                 </button>
                                 <button
                                   className="btn join-item bg-red-600 btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs btn-square hover:bg-yellow-400 hover:border-black text-black"
                                   onClick={() => handleDelete(game.title)}
                                 >
-                                  <i className="bi bi-trash"></i>
+                                  <BsTrash />
                                 </button>
                               </div>
                             </td>
@@ -1004,14 +1005,14 @@ const MemoryPage = () => {
                     onClick={handleFirstStatePage}
                     disabled={paginateStateGames().length === 0}
                   >
-                    <i className="bi bi-chevron-double-left"></i>
+                    <BsChevronDoubleLeft />
                   </button>
                   <button
                     className={`join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black ${paginateStateGames().length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-600 hover:border-black'}`}
                     onClick={handlePreviousStatePage}
                     disabled={paginateStateGames().length === 0}
                   >
-                    <i className="bi bi-chevron-left"></i>
+                    <BsChevronLeft />
                   </button>
                   {displayedStatesPages.map((page) => (
                     <button
@@ -1028,14 +1029,14 @@ const MemoryPage = () => {
                     onClick={handleNextStatePage}
                     disabled={paginateStateGames().length === 0}
                   >
-                    <i className="bi bi-chevron-right"></i>
+                    <BsChevronRight />
                   </button>
                   <button
                     className={`join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black ${paginateStateGames().length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-400 hover:border-black'}`}
                     onClick={handleLastStatePage}
                     disabled={paginateStateGames().length === 0}
                   >
-                    <i className="bi bi-chevron-double-right"></i>
+                    <BsChevronDoubleRight />
                   </button>
                 </div>
               </div>

@@ -4,6 +4,7 @@ import { systems } from "@/data/system";
 import { useState, useEffect } from "react";
 import { initializeAOS } from "@/utils/AOS";
 import Head from "next/head";
+import { BsFileEarmarkZip, BsHouseDoor, BsInfoCircle, BsSearch } from "react-icons/bs";
 
 const ROMPage = () => {
     const [imagesLoaded, setImagesLoaded] = useState({});
@@ -84,14 +85,14 @@ const ROMPage = () => {
                                 <ul>
                                     <li>
                                         <Link href="/">
-                                            <i className="bi bi-house-door"></i>&nbsp;
-                                            Home
+                                            <BsHouseDoor />
+                                            &nbsp; Home
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/rom">
-                                            <i className="bi bi-file-earmark-zip"></i>&nbsp;
-                                            ROM
+                                            <BsFileEarmarkZip/>
+                                            &nbsp; ROM
                                         </Link>
                                     </li>
                                 </ul>
@@ -106,12 +107,12 @@ const ROMPage = () => {
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
-                                <i className="bi bi-search"></i>
+                                <BsSearch/>
                             </label>
                         </div>
                         {noResults && (
                             <div role="alert" className="alert bg-red-600 border-2 text-black border-black rounded shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-                                <i className="bi bi-info-circle text-xl"></i>
+                                <BsInfoCircle />
                                 <span className="text-xs">No systems found matching your search.</span>
                             </div>
                         )}

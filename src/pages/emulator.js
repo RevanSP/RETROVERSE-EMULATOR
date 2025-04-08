@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { initializeAOS } from "@/utils/AOS";
 import CustomROM from "@/components/CustomROM";
 import Head from "next/head";
+import { BsHouseDoor, BsInfoCircle, BsJoystick, BsSearch } from "react-icons/bs";
 
 const EmulatorPage = () => {
   const [imagesLoaded, setImagesLoaded] = useState({});
@@ -106,14 +107,12 @@ const EmulatorPage = () => {
                 <ul>
                   <li>
                     <Link href="/">
-                      <i className="bi bi-house-door"></i>&nbsp;
-                      Home
+                      <BsHouseDoor />&nbsp; Home
                     </Link>
                   </li>
                   <li>
                     <Link href="/emulator">
-                      <i className="bi bi-joystick"></i>&nbsp;
-                      Emulator
+                      <BsJoystick />&nbsp; Emulator
                     </Link>
                   </li>
                 </ul>
@@ -128,12 +127,12 @@ const EmulatorPage = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <i className="bi bi-search"></i>
+                <BsSearch />
               </label>
             </div>
             {noResults && (
               <div role="alert" className="alert bg-blue-500 border-2 text-black border-black rounded shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-                <i className="bi bi-info-circle text-xl"></i>
+                <BsInfoCircle className="text-xl" />
                 <span className="text-xs">No systems found matching your search.</span>
               </div>
             )}

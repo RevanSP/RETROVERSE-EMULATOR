@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
+import { BsCloudUpload, BsFileEarmark, BsInfoLg, BsPlayFill } from "react-icons/bs";
 
 const CORE_MAP = {
     nes: ["fds", "nes", "unif", "unf"],
@@ -257,8 +258,8 @@ const CustomROM = () => {
                                 onChange={(e) => handleFiles(e.target.files)}
                             />
                             <label htmlFor="file-upload" className="cursor-pointer flex flex-col items-center justify-center h-full">
-                                <i id="default-icon" className="bi bi-cloud-upload text-6xl text-black"></i>
-                                <i id="file-icon" className="bi bi-file-earmark text-6xl text-blue-500 hidden"></i>
+                                <BsCloudUpload id="default-icon" className="text-6xl text-black" />
+                                <BsFileEarmark id="file-icon" className="text-6xl text-blue-500 hidden" />
                                 <p id="file-name" className="mt-4 text-lg font-semibold text-gray-700">
                                     Drag and drop your ROM here or click to select
                                 </p>
@@ -284,7 +285,7 @@ const CustomROM = () => {
                             data-tip="Recommended: Upload your file directly instead of using a link."
                             className="tooltip bg-red-600 mt-9 rounded btn-sm btn-square hover:border-black border-2 border-black hover:bg-yellow-400 tooltip-left shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] before:w-[10rem] before:content-[attr(data-tip)]"
                         >
-                            <i className="bi bi-info-lg"></i>
+                            <BsInfoLg />
                         </button>
                     </div>
                     <div className="flex space-x-2.5">
@@ -367,8 +368,7 @@ const CustomROM = () => {
                                 <span className="loading loading-spinner loading-xs"></span>&nbsp;&nbsp;{progress}%
                             </div>
                         ) : (
-                            <>
-                                <i className="bi bi-play-fill"></i>&nbsp;&nbsp;START
+                            <><BsPlayFill />&nbsp;&nbsp;START
                             </>
                         )}
                     </button>

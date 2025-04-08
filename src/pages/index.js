@@ -1,38 +1,38 @@
+import { BsSave, BsUpload, BsPause, BsJoystick, BsController, BsLaptop } from 'react-icons/bs';
 import Layout from "./layout/Layout";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
 
 export default function Home() {
-
   const features = [
     {
-      icon: "bi-save",
+      icon: <BsSave />,
       title: "LOAD & SAVE STATES",
       description: "Easily load and save your game progress at any time."
     },
     {
-      icon: "bi-upload",
+      icon: <BsUpload />,
       title: "IMPORT & EXPORT SAVE",
       description: "Import and export your saved states to share or back up."
     },
     {
-      icon: "bi-pause",
+      icon: <BsPause />,
       title: "PAUSE & RESTART MODE",
       description: "Pause your game or restart at any point to continue later."
     },
     {
-      icon: "bi-dpad",
+      icon: <BsJoystick />,
       title: "CHEATS FOR GAMES",
       description: "Activate cheats to enhance or modify your gaming experience."
     },
     {
-      icon: "bi-controller",
+      icon: <BsController />,
       title: "CONTROLLER SETTINGS",
       description: "Customize your controller settings for a personalized experience."
     },
     {
-      icon: "bi-laptop",
+      icon: <BsLaptop />,
       title: "CROSS-PLATFORM SUPPORT",
       description: "Play across multiple devices with seamless synchronization."
     }
@@ -43,27 +43,27 @@ export default function Home() {
     { name: "Brand 2", logo: "/brands/SEGA.svg" },
     { name: "Brand 3", logo: "/brands/Atari.svg" },
     { name: "Brand 4", logo: "/brands/PlayStation.svg" },
-  ]
+  ];
 
-  const sliderRef = useRef(null)
-  const [sliderWidth, setSliderWidth] = useState(0)
+  const sliderRef = useRef(null);
+  const [sliderWidth, setSliderWidth] = useState(0);
 
   useEffect(() => {
     if (sliderRef.current) {
-      setSliderWidth(sliderRef.current.offsetWidth)
+      setSliderWidth(sliderRef.current.offsetWidth);
     }
 
     const handleResize = () => {
       if (sliderRef.current) {
-        setSliderWidth(sliderRef.current.offsetWidth)
+        setSliderWidth(sliderRef.current.offsetWidth);
       }
-    }
+    };
 
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  const brandItems = [...brands, ...brands, ...brands]
+  const brandItems = [...brands, ...brands, ...brands];
 
   return (
     <>
@@ -102,8 +102,8 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-12 mt-16">
               {features.map((feature, index) => (
                 <div className="text-center" key={index}>
-                  <div className="bg-blue-500 rounded-full p-6 inline-block mb-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black">
-                    <i className={`bi ${feature.icon} text-5xl text-black`}></i>
+                  <div className="bg-blue-500 rounded-full p-6 inline-block mb-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black text-4xl">
+                    {feature.icon}
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                   <p className="text-gray-600">{feature.description}</p>

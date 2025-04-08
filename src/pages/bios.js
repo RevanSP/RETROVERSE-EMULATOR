@@ -2,6 +2,7 @@ import Head from "next/head";
 import Layout from "./layout/Layout";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { BsChevronDoubleLeft, BsChevronDoubleRight, BsChevronLeft, BsChevronRight, BsFileEarmarkArrowDown, BsHouseDoor, BsNut, BsSearch } from "react-icons/bs";
 
 const BIOSPage = () => {
 
@@ -11,24 +12,24 @@ const BIOSPage = () => {
 
     useEffect(() => {
         const fetchBiosData = async () => {
-            const headers = process.env.NODE_ENV === 'production' 
+            const headers = process.env.NODE_ENV === 'production'
                 ? { Authorization: process.env.NEXT_PUBLIC_API_TOKEN }
-                : {}; 
-    
+                : {};
+
             try {
                 const res = await fetch('/api/bios', { headers });
                 const biosData = await res.json();
-    
+
                 if (!biosData) {
                     throw new Error('No data received');
                 }
-    
+
                 const dataArray = Array.isArray(biosData) ? biosData : biosData.data;
-    
+
                 if (!Array.isArray(dataArray)) {
                     throw new Error(`Invalid data format. Received: ${JSON.stringify(biosData).slice(0, 100)}...`);
                 }
-    
+
                 setBios(dataArray);
             } catch (error) {
                 setError(error.message);
@@ -36,7 +37,7 @@ const BIOSPage = () => {
                 setLoading(false);
             }
         };
-    
+
         fetchBiosData();
     }, []);
 
@@ -96,13 +97,13 @@ const BIOSPage = () => {
                                 <ul>
                                     <li>
                                         <Link href="/">
-                                            <i className="bi bi-house-door"></i>&nbsp;
+                                            <BsHouseDoor  />&nbsp;
                                             Home
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="/bios">
-                                            <i className="bi bi-nut"></i>&nbsp;
+                                            <BsNut />&nbsp;
                                             BIOS
                                         </Link>
                                     </li>
@@ -119,7 +120,7 @@ const BIOSPage = () => {
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
                                     />
-                                    <i className="bi bi-search"></i>
+                                    <BsSearch />
                                 </label>
                             </div>
                             <div className="overflow-x-auto">
@@ -135,7 +136,7 @@ const BIOSPage = () => {
                                         {loading ? (
                                             <tr>
                                                 <td colSpan="3" className="text-center py-3">
-                                                <span className="loading loading-spinner loading-xs"></span>
+                                                    <span className="loading loading-spinner loading-xs"></span>
                                                 </td>
                                             </tr>
                                         ) : error ? (
@@ -154,7 +155,7 @@ const BIOSPage = () => {
                                                             href={bio.downloadUrl}
                                                             className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-red-600 hover:bg-yellow-400 hover:border-black text-black btn-square"
                                                         >
-                                                            <i className="bi bi-file-earmark-arrow-down"></i>
+                                                            <BsFileEarmarkArrowDown />
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -176,20 +177,21 @@ const BIOSPage = () => {
                                     </tfoot>
                                 </table>
                             </div>
+
                             <div className="join mt-4 flex justify-center gap-2">
                                 <button
                                     className={`join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black ${currentPage === 1 || isSearchActive || paginateGames().length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-400 hover:border-black'}`}
                                     onClick={handleFirstPage}
                                     disabled={currentPage === 1 || isSearchActive || paginateGames().length === 0}
                                 >
-                                    <i className="bi bi-chevron-double-left"></i>
+                                    <BsChevronDoubleLeft />
                                 </button>
                                 <button
                                     className={`join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black ${currentPage === 1 || isSearchActive || paginateGames().length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-red-600 hover:border-black'}`}
                                     onClick={handlePreviousPage}
                                     disabled={currentPage === 1 || isSearchActive || paginateGames().length === 0}
                                 >
-                                    <i className="bi bi-chevron-left"></i>
+                                    <BsChevronLeft />
                                 </button>
                                 {displayedPages.map((page) => (
                                     <button
@@ -206,14 +208,14 @@ const BIOSPage = () => {
                                     onClick={handleNextPage}
                                     disabled={currentPage === totalPages || isSearchActive || paginateGames().length === 0}
                                 >
-                                    <i className="bi bi-chevron-right"></i>
+                                    <BsChevronRight />
                                 </button>
                                 <button
                                     className={`join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black ${currentPage === totalPages || isSearchActive || paginateGames().length === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-400 hover:border-black'}`}
                                     onClick={handleLastPage}
                                     disabled={currentPage === totalPages || isSearchActive || paginateGames().length === 0}
                                 >
-                                    <i className="bi bi-chevron-double-right"></i>
+                                    <BsChevronDoubleRight />
                                 </button>
                             </div>
                         </div>

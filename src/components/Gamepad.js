@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { BsInfoCircle } from 'react-icons/bs';
 const Gamepad = ({ setControllerStatus }) => {
     const [controllerIndex, setControllerIndex] = useState(null);
     const [buttonPressed, setButtonPressed] = useState(false);
@@ -362,7 +363,7 @@ const Gamepad = ({ setControllerStatus }) => {
                             role="alert"
                             className="alert rounded bg-red-600 text-black border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] mt-6"
                         >
-                            <i className="bi bi-info-circle"></i>
+                            <BsInfoCircle/>
                             <span>Controller Disconnected.</span>
                         </div>
                     )}

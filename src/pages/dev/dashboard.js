@@ -6,6 +6,7 @@ import Link from "next/link";
 import { UploadDropzone } from "@/utils/uploadthing";
 import "@uploadthing/react/styles.css";
 import imageCompression from "browser-image-compression";
+import { BsBuilding, BsCheck, BsChevronDoubleLeft, BsChevronDoubleRight, BsChevronLeft, BsChevronRight, BsCloudUpload, BsController, BsFillTrashFill, BsGrid, BsHouseDoor, BsLink45Deg, BsPencil, BsPlusCircleDotted, BsSearch, BsXCircle } from "react-icons/bs";
 
 const Dashboard = ({ }) => {
   const [activeTab, setActiveTab] = useState('files-collection');
@@ -312,103 +313,103 @@ const Dashboard = ({ }) => {
     }
   };
 
-    const createGame = async (event) => {
-      event.preventDefault();
+  const createGame = async (event) => {
+    event.preventDefault();
 
-      setIsSubmitting(true);
+    setIsSubmitting(true);
 
-      try {
-        const gameData = {
-          title,
-          publisher,
-          gameLink,
-          iframeLink,
-          core,
-          description,
-          cover
-        };
+    try {
+      const gameData = {
+        title,
+        publisher,
+        gameLink,
+        iframeLink,
+        core,
+        description,
+        cover
+      };
 
-        const newGameRef = await addDoc(collection(db, "games"), gameData);
-        console.log("Game created with ID: ", newGameRef.id);
+      const newGameRef = await addDoc(collection(db, "games"), gameData);
+      console.log("Game created with ID: ", newGameRef.id);
 
-        setTitle('');
-        setPublisher('');
-        setGameLink('');
-        setIframeLink('');
-        setCore('');
-        setDescription('');
-        setCover(null);
+      setTitle('');
+      setPublisher('');
+      setGameLink('');
+      setIframeLink('');
+      setCore('');
+      setDescription('');
+      setCover(null);
 
-        document.getElementById("add-update_games").close();
-        fetchGames();
-        handleToast("Game successfully created!");
-      } catch (error) {
-        console.error("Error adding document: ", error);
-        handleToast("Failed to create game. Please try again.");
-      } finally {
-        setIsSubmitting(false);
-      }
-    };
+      document.getElementById("add-update_games").close();
+      fetchGames();
+      handleToast("Game successfully created!");
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      handleToast("Failed to create game. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-    const updateGame = async (event) => {
-      event.preventDefault();
+  const updateGame = async (event) => {
+    event.preventDefault();
 
-      setIsSubmitting(true);
+    setIsSubmitting(true);
 
-      try {
-        const gameRef = doc(db, "games", currentGameId);
-        const gameData = {
-          title,
-          publisher,
-          gameLink,
-          iframeLink,
-          core,
-          description,
-          cover
-        };
+    try {
+      const gameRef = doc(db, "games", currentGameId);
+      const gameData = {
+        title,
+        publisher,
+        gameLink,
+        iframeLink,
+        core,
+        description,
+        cover
+      };
 
-        await updateDoc(gameRef, gameData);
-        console.log("Game updated with ID: ", currentGameId);
+      await updateDoc(gameRef, gameData);
+      console.log("Game updated with ID: ", currentGameId);
 
-        setTitle('');
-        setPublisher('');
-        setGameLink('');
-        setIframeLink('');
-        setCore('');
-        setDescription('');
-        setCover(null);
+      setTitle('');
+      setPublisher('');
+      setGameLink('');
+      setIframeLink('');
+      setCore('');
+      setDescription('');
+      setCover(null);
 
-        document.getElementById("add-update_games").close();
-        fetchGames();
-        handleToast("Game successfully updated!");
-      } catch (error) {
-        console.error("Error updating document: ", error);
-        handleToast("Failed to update game. Please try again.");
-      } finally {
-        setIsSubmitting(false);
-      }
-    };
+      document.getElementById("add-update_games").close();
+      fetchGames();
+      handleToast("Game successfully updated!");
+    } catch (error) {
+      console.error("Error updating document: ", error);
+      handleToast("Failed to update game. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-    const editGame = (game) => {
-      setIsEditGameMode(true);
-      setCurrentGameId(game.id);
-      setTitle(game.title);
-      setPublisher(game.publisher);
-      setGameLink(game.gameLink);
-      setIframeLink(game.iframeLink);
-      setCore(game.core);
-      setDescription(game.description);
-      setCover(game.cover);
-      document.getElementById("add-update_games").showModal();
-    };
+  const editGame = (game) => {
+    setIsEditGameMode(true);
+    setCurrentGameId(game.id);
+    setTitle(game.title);
+    setPublisher(game.publisher);
+    setGameLink(game.gameLink);
+    setIframeLink(game.iframeLink);
+    setCore(game.core);
+    setDescription(game.description);
+    setCover(game.cover);
+    document.getElementById("add-update_games").showModal();
+  };
 
-    const handleFormSubmit = (event) => {
-      if (isEditGameMode) {
-        updateGame(event);
-      } else {
-        createGame(event);
-      }
-    };
+  const handleFormSubmit = (event) => {
+    if (isEditGameMode) {
+      updateGame(event);
+    } else {
+      createGame(event);
+    }
+  };
 
   const [selectedGames, setSelectedGames] = useState(new Set());
   const [isDeletingGames, setIsDeletingGames] = useState(false);
@@ -751,7 +752,7 @@ const Dashboard = ({ }) => {
               {isRenaming ? (
                 <span className="loading loading-spinner loading-xs"></span>
               ) : (
-                <i className="bi bi-cloud-upload"></i>
+                <BsCloudUpload />
               )}
             </button>
           </div>
@@ -794,7 +795,7 @@ const Dashboard = ({ }) => {
           <h3 className="font-bold text-lg mb-4 text-black">{isEditGameMode ? "UPDATE GAME" : "ADD GAME"}</h3>
           <form onSubmit={handleFormSubmit}>
             <label className="input input-sm text-xs input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4 bg-base-300">
-              <i className="bi bi-controller"></i>
+              <BsController />
               <input
                 type="text"
                 className="grow"
@@ -805,7 +806,7 @@ const Dashboard = ({ }) => {
               />
             </label>
             <label className="input input-sm text-xs input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4 bg-base-300">
-              <i className="bi bi-building"></i>
+              <BsBuilding />
               <input
                 type="text"
                 className="grow"
@@ -856,7 +857,6 @@ const Dashboard = ({ }) => {
                 ))}
               </select>
             </div>
-
             <textarea
               className="bg-base-300 textarea-xs textarea textarea-bordered w-full shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4"
               placeholder="Description ..."
@@ -865,7 +865,6 @@ const Dashboard = ({ }) => {
               onChange={(e) => setDescription(e.target.value)}
               required
             ></textarea>
-
             <button
               className="bg-blue-500 border-2 border-black text-black hover:border-black hover:bg-red-600 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] w-full btn"
               type="submit"
@@ -878,7 +877,6 @@ const Dashboard = ({ }) => {
               )}
             </button>
           </form>
-
         </div>
       </dialog>
       <dialog id="delete_confirm2" className="modal">
@@ -957,7 +955,7 @@ const Dashboard = ({ }) => {
                 {isUploading ? (
                   <span className="loading loading-spinner loading-xs"></span>
                 ) : (
-                  <i className="bi bi-cloud-upload"></i>
+                  <BsCloudUpload />
                 )}
               </button>
             </div>
@@ -971,13 +969,13 @@ const Dashboard = ({ }) => {
               <ul>
                 <li>
                   <Link href="/">
-                    <i className="bi bi-house-door"></i>&nbsp;
+                    <BsHouseDoor />&nbsp;
                     Home
                   </Link>
                 </li>
                 <li>
                   <Link href="/dev/dashboard">
-                    <i className="bi bi-columns-gap"></i>&nbsp;
+                    <BsGrid />&nbsp;
                     Dashboard
                   </Link>
                 </li>
@@ -1018,20 +1016,20 @@ const Dashboard = ({ }) => {
                     className="grow"
                     placeholder={`Search Files (${renderedData.length}) ...`}
                   />
-                  <i className="bi bi-search"></i>
+                  <BsSearch />
                 </label>
                 <button
                   onClick={() => openDeleteModal()}
                   className={`btn btn-sm btn-square text-black bg-red-600 hover:bg-yellow-400 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-none`}
                   disabled={chosenFiles.length < 2}
                 >
-                  <i className="bi bi-x-circle"></i>
+                  <BsXCircle />
                 </button>
 
                 <button onClick={() => document.getElementById('create-files').showModal()}
                   className={`btn btn-sm btn-square text-black bg-yellow-400 hover:bg-red-600 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-l-none rounded-r`}
                 >
-                  <i className="bi bi-plus-circle-dotted"></i>
+                  <BsPlusCircleDotted />
                 </button>
               </div>
               <div className="overflow-x-auto">
@@ -1071,19 +1069,19 @@ const Dashboard = ({ }) => {
                                 onClick={() => handleRenameModalOpen(file)}
                                 className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-yellow-400 hover:bg-red-600 hover:border-black text-black btn-square"
                               >
-                                <i className="bi bi-pencil"></i>
+                                <BsPencil />
                               </button>
                               <button
                                 className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-blue-500 hover:bg-white hover:border-black text-black btn-square"
                                 onClick={() => handleCopyLink(file.link, file.key)}
                               >
-                                <i className={copiedFileKey === file.key ? 'bi bi-check' : 'bi bi-link-45deg'}></i>
+                                {copiedFileKey === file.key ? <BsCheck /> : <BsLink45Deg />}
                               </button>
                               <button
                                 className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-red-600 hover:bg-yellow-400 hover:border-black text-black btn-square"
                                 onClick={() => openDeleteModal(file.key)}
                               >
-                                <i className="bi bi-trash2"></i>
+                                <BsFillTrashFill />
                               </button>
                             </div>
                           </td>
@@ -1118,14 +1116,14 @@ const Dashboard = ({ }) => {
                   disabled={paginationData.isEmpty || paginationData.isFirstPage}
                   className="join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black hover:bg-yellow-400 hover:border-black disabled:opacity-50"
                 >
-                  <i className="bi bi-chevron-double-left"></i>
+                  <BsChevronDoubleLeft />
                 </button>
                 <button
                   onClick={goToPrevPage}
                   disabled={paginationData.isEmpty || paginationData.isFirstPage}
                   className="join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black hover:bg-red-600 hover:border-black disabled:opacity-50"
                 >
-                  <i className="bi bi-chevron-left"></i>
+                  <BsChevronLeft />
                 </button>
                 {paginationData.visiblePages.map(pageNum => (
                   <button
@@ -1133,7 +1131,7 @@ const Dashboard = ({ }) => {
                     onClick={() => jumpToPage(pageNum)}
                     disabled={paginationData.isEmpty}
                     className={`join-item btn btn-xs btn-square border-2 border-black
-              ${pageNum === activePgNum
+        ${pageNum === activePgNum
                         ? 'btn-active text-black'
                         : 'bg-yellow-400 hover:bg-red-600 text-black'
                       }`}
@@ -1146,14 +1144,14 @@ const Dashboard = ({ }) => {
                   disabled={paginationData.isEmpty || paginationData.isLastPage}
                   className="join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black hover:bg-red-600 hover:border-black disabled:opacity-50"
                 >
-                  <i className="bi bi-chevron-right"></i>
+                  <BsChevronRight />
                 </button>
                 <button
                   onClick={jumpToLastPage}
                   disabled={paginationData.isEmpty || paginationData.isLastPage}
                   className="join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black hover:bg-yellow-400 hover:border-black disabled:opacity-50"
                 >
-                  <i className="bi bi-chevron-double-right"></i>
+                  <BsChevronDoubleRight />
                 </button>
               </div>
             </div>
@@ -1169,13 +1167,14 @@ const Dashboard = ({ }) => {
                     value={searchQueryGame}
                     onChange={handleSearchGameChange}
                   />
-                  <i className="bi bi-search"></i>
+                  <BsSearch />
                 </label>
-                <button onClick={openDeleteConfirmDialog}
+                <button
+                  onClick={openDeleteConfirmDialog}
                   disabled={isDeleteButtonDisabled}
                   className={`btn btn-sm btn-square text-black bg-red-600 hover:bg-yellow-400 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-none`}
                 >
-                  <i className="bi bi-x-circle"></i>
+                  <BsXCircle />
                 </button>
                 <button
                   onClick={() => {
@@ -1190,7 +1189,7 @@ const Dashboard = ({ }) => {
                   }}
                   className={`btn btn-sm btn-square text-black bg-yellow-400 hover:bg-red-600 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-l-none rounded-r`}
                 >
-                  <i className="bi bi-plus-circle-dotted"></i>
+                  <BsPlusCircleDotted />
                 </button>
               </div>
               <div className="overflow-x-auto">
@@ -1230,13 +1229,13 @@ const Dashboard = ({ }) => {
                                 onClick={() => editGame(game)}
                                 className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-yellow-400 hover:bg-red-600 hover:border-black text-black btn-square"
                               >
-                                <i className="bi bi-pencil"></i>
+                                <BsPencil />
                               </button>
                               <button
                                 onClick={() => openDeleteConfirmDialog(game.id)}
                                 className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-red-600 hover:bg-yellow-400 hover:border-black text-black btn-square"
                               >
-                                <i className="bi bi-trash"></i>
+                                <BsFillTrashFill />
                               </button>
                             </div>
                           </td>
@@ -1273,14 +1272,14 @@ const Dashboard = ({ }) => {
                   disabled={currentPages === 1 || isNoResults}
                   className="join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black hover:bg-yellow-400 hover:border-black disabled:opacity-50"
                 >
-                  <i className="bi bi-chevron-double-left"></i>
+                  <BsChevronDoubleLeft />
                 </button>
                 <button
                   onClick={() => setCurrentPages(prev => Math.max(1, prev - 1))}
                   disabled={currentPages === 1 || isNoResults}
                   className="join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black hover:bg-red-600 hover:border-black disabled:opacity-50"
                 >
-                  <i className="bi bi-chevron-left"></i>
+                  <BsChevronLeft />
                 </button>
                 {getPageNumbers().map(pageNum => (
                   <button
@@ -1300,14 +1299,14 @@ const Dashboard = ({ }) => {
                   disabled={currentPages === totalPage || isNoResults}
                   className="join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black hover:bg-red-600 hover:border-black disabled:opacity-50"
                 >
-                  <i className="bi bi-chevron-right"></i>
+                  <BsChevronRight />
                 </button>
                 <button
                   onClick={() => setCurrentPages(totalPage)}
                   disabled={currentPages === totalPage || isNoResults}
                   className="join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black hover:bg-yellow-400 hover:border-black disabled:opacity-50"
                 >
-                  <i className="bi bi-chevron-double-right"></i>
+                  <BsChevronDoubleRight />
                 </button>
               </div>
             </div>
@@ -1323,20 +1322,20 @@ const Dashboard = ({ }) => {
                     value={searchQuery}
                     onChange={handleSearchChange}
                   />
-                  <i className="bi bi-search"></i>
+                  <BsSearch />
                 </label>
                 <button
                   className={`btn btn-sm btn-square text-black bg-red-600 hover:bg-yellow-400 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-none`}
                   onClick={handleMultipleDelete}
                   disabled={selectedRows.size < 2}
                 >
-                  <i className="bi bi-x-circle"></i>
+                  <BsXCircle />
                 </button>
                 <button
                   onClick={() => openDialog()}
                   className="btn btn-sm btn-square text-black bg-yellow-400 hover:bg-red-600 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-l-none rounded-r"
                 >
-                  <i className="bi bi-plus-circle-dotted"></i>
+                  <BsPlusCircleDotted />
                 </button>
               </div>
               <div className="overflow-x-auto">
@@ -1374,13 +1373,13 @@ const Dashboard = ({ }) => {
                                 onClick={() => openDialog(file)}
                                 className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-yellow-400 hover:bg-red-600 hover:border-black text-black btn-square"
                               >
-                                <i className="bi bi-pencil"></i>
+                                <BsPencil />
                               </button>
                               <button
                                 className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-red-600 hover:bg-yellow-400 hover:border-black text-black btn-square"
                                 onClick={() => openDeleteDialog(file.id)}
                               >
-                                <i className="bi bi-trash2"></i>
+                                <BsFillTrashFill />
                               </button>
                             </div>
                           </td>
@@ -1416,14 +1415,14 @@ const Dashboard = ({ }) => {
                   disabled={currentPage === 1 || searchQuery !== ''}
                   className="join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black hover:bg-yellow-400 hover:border-black"
                 >
-                  <i className="bi bi-chevron-double-left"></i>
+                  <BsChevronDoubleLeft />
                 </button>
                 <button
                   onClick={handlePreviousSet}
                   disabled={currentPage === 1 || searchQuery !== ''}
                   className="join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black hover:bg-red-600 hover:border-black"
                 >
-                  <i className="bi bi-chevron-left"></i>
+                  <BsChevronLeft />
                 </button>
 
                 {visiblePageNumbers.map((pageNumber) => (
@@ -1444,14 +1443,14 @@ const Dashboard = ({ }) => {
                   disabled={currentPage === totalPages || searchQuery !== ''}
                   className="join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black hover:bg-red-600 hover:border-black"
                 >
-                  <i className="bi bi-chevron-right"></i>
+                  <BsChevronRight />
                 </button>
                 <button
                   onClick={handleLastPage}
                   disabled={currentPage === totalPages || searchQuery !== ''}
                   className="join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black hover:bg-yellow-400 hover:border-black"
                 >
-                  <i className="bi bi-chevron-double-right"></i>
+                  <BsChevronDoubleRight />
                 </button>
               </div>
             </div>

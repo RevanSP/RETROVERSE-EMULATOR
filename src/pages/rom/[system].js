@@ -4,6 +4,7 @@ import { systems } from "@/data/system";
 import { db, doc, getDoc } from '@/lib/firebase';
 import Layout from '../layout/Layout';
 import { useState, useEffect } from 'react';
+import { BsCheckCircle, BsChevronDoubleLeft, BsChevronDoubleRight, BsChevronLeft, BsChevronRight, BsFileEarmarkArrowDown, BsFileEarmarkZip, BsHouseDoor, BsJoystick, BsSearch, BsShare } from 'react-icons/bs';
 
 const SystemPage = ({ systemData, games, totalGames }) => {
     const [copiedIndex, setCopiedIndex] = useState(null);
@@ -68,13 +69,25 @@ const SystemPage = ({ systemData, games, totalGames }) => {
             <td className="truncate">{game.title || game.name}</td>
             <td className="truncate space-x-2">
                 <div className="join">
-                    <button className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-yellow-400 hover:bg-red-600 hover:border-black text-black btn-square"
-                        onClick={() => handleAction(game.downloadUrl, index, 'copy')}>
-                        <i className={copiedIndex === index ? "bi bi-check-circle" : "bi bi-share"}></i>
+                    <button
+                        className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-yellow-400 hover:bg-red-600 hover:border-black text-black btn-square"
+                        onClick={() => handleAction(game.downloadUrl, index, 'copy')}
+                    >
+                        {copiedIndex === index ? (
+                            <BsCheckCircle />
+                        ) : (
+                            <BsShare />
+                        )}
                     </button>
-                    <button className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-red-600 hover:bg-yellow-400 hover:border-black text-black btn-square"
-                        onClick={() => handleAction(game.downloadUrl, index, 'download')}>
-                        <i className={downloadingIndex === index ? "bi bi-check-circle" : "bi bi-file-earmark-arrow-down"}></i>
+                    <button
+                        className="btn join-item btn-xs border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs bg-red-600 hover:bg-yellow-400 hover:border-black text-black btn-square"
+                        onClick={() => handleAction(game.downloadUrl, index, 'download')}
+                    >
+                        {downloadingIndex === index ? (
+                            <BsCheckCircle />
+                        ) : (
+                            <BsFileEarmarkArrowDown />
+                        )}
                     </button>
                 </div>
             </td>
@@ -113,17 +126,18 @@ const SystemPage = ({ systemData, games, totalGames }) => {
                             <ul>
                                 <li>
                                     <Link href="/">
-                                        <i className="bi bi-house-door"></i>&nbsp;
+                                        <BsHouseDoor />
+                                        &nbsp;
                                         Home
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/rom">
-                                        <i className="bi bi-file-earmark-zip"></i>&nbsp;
+                                        <BsFileEarmarkZip />&nbsp;
                                         ROM
                                     </Link>
                                 </li>
-                                <li><i className="bi bi-joystick"></i>&nbsp;&nbsp;{systemData.alias}</li>
+                                <li><BsJoystick/>&nbsp;&nbsp;{systemData.alias}</li>
                             </ul>
                         </div>
                     </div>
@@ -138,7 +152,7 @@ const SystemPage = ({ systemData, games, totalGames }) => {
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
                                     />
-                                    <i className="bi bi-search"></i>
+                                    <BsSearch />
                                 </label>
                                 {systemInfo && systemInfo.cores && systemInfo.cores.length > 0 && (
                                     <button
@@ -175,14 +189,14 @@ const SystemPage = ({ systemData, games, totalGames }) => {
                                 onClick={() => setCurrentPage(1)}
                                 disabled={isNoGames || currentPage === 1 || !!searchQuery}
                             >
-                                <i className="bi bi-chevron-double-left"></i>
+                                <BsChevronDoubleLeft />
                             </button>
                             <button
                                 className="join-item btn btn-xs btn-square bg-yellow-400 border-2 border-black text-black hover:bg-red-600 hover:border-black"
                                 onClick={() => setCurrentPage(currentPage - 1)}
                                 disabled={isNoGames || currentPage === 1 || !!searchQuery}
                             >
-                                <i className="bi bi-chevron-left"></i>
+                                <BsChevronLeft />
                             </button>
                             {renderPageButtons()}
                             <button
@@ -190,14 +204,14 @@ const SystemPage = ({ systemData, games, totalGames }) => {
                                 onClick={() => setCurrentPage(currentPage + 1)}
                                 disabled={isNoGames || currentPage === totalPages || !!searchQuery}
                             >
-                                <i className="bi bi-chevron-right"></i>
+                                <BsChevronRight />
                             </button>
                             <button
                                 className="join-item btn btn-xs btn-square bg-red-600 border-2 border-black text-black hover:bg-yellow-400 hover:border-black"
                                 onClick={() => setCurrentPage(totalPages)}
                                 disabled={isNoGames || currentPage === totalPages || !!searchQuery}
                             >
-                                <i className="bi bi-chevron-double-right"></i>
+                                <BsChevronDoubleRight />
                             </button>
                         </div>
                     </div>

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from "next/image";
+import { BsBell, BsBrightnessHigh, BsCheckCircle, BsEnvelope, BsFacebook, BsFileEarmarkZip, BsGithub, BsHouseDoor, BsInfoCircle, BsInstagram, BsJoystick, BsKey, BsMoonStars, BsNut, BsPersonCheck, BsPersonLock, BsSdCard } from 'react-icons/bs';
 
 const data = {
   contributors: [
@@ -112,9 +113,9 @@ const Layout = ({ children }) => {
   };
 
   const socialLinks = [
-    { icon: "bi-github", href: "https://github.com/RevanSP", label: "Github" },
-    { icon: "bi-instagram", href: "https://www.instagram.com/m9nokuro/", label: "Instagram" },
-    { icon: "bi-facebook", href: "https://web.facebook.com/profile.php?id=100082958149027&_rdc=1&_rdr", label: "Facebook" },
+    { icon: BsGithub, href: "https://github.com/RevanSP", label: "Github" },
+    { icon: BsInstagram, href: "https://www.instagram.com/m9nokuro/", label: "Instagram" },
+    { icon: BsFacebook, href: "https://web.facebook.com/profile.php?id=100082958149027&_rdc=1&_rdr", label: "Facebook" },
   ];
 
   const isHomePage = router.pathname === "/";
@@ -375,7 +376,7 @@ const Layout = ({ children }) => {
               {loading ? (
                 <span className="loading loading-spinner loading-xs"></span>
               ) : isSuccess ? (
-                <i className="bi bi-check-circle"></i>
+                <BsCheckCircle />
               ) : (
                 'SUBMIT'
               )}
@@ -459,7 +460,7 @@ const Layout = ({ children }) => {
           </div>
           <form onSubmit={handleSubmit}>
             <label className="input input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black bg-base-200 w-full mb-4">
-              <i className="bi bi-envelope"></i>
+              <BsEnvelope />
               <input
                 type="email"
                 className="grow"
@@ -469,7 +470,7 @@ const Layout = ({ children }) => {
               />
             </label>
             <label className="input input-bordered flex items-center gap-2 bg-base-200 w-full mb-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black">
-              <i className="bi bi-key"></i>
+              <BsKey />
               <input
                 type="password"
                 className="grow"
@@ -495,10 +496,7 @@ const Layout = ({ children }) => {
               className="btn btn-square btn-sm bg-yellow-400 hover:bg-red-600 border-2 border-black rounded text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] ml-3 hover:border-black"
               onClick={toggleTheme}
             >
-              <i
-                className={`bi ${theme === "black" ? "bi-brightness-high" : "bi-moon-stars"
-                  }`}
-              ></i>
+              {theme === "black" ? <BsBrightnessHigh /> : <BsMoonStars />}
             </button>
           </div>
           <div className="navbar-center">
@@ -506,8 +504,12 @@ const Layout = ({ children }) => {
           </div>
           <div className="navbar-end">
             <div className="dropdown dropdown-end">
-              <div tabIndex={0} role="button" className="btn btn-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded bg-red-600 btn-square text-black mr-3 hover:bg-yellow-400 hover:border-black">
-                <i className={`bi ${isLoggedIn || isLoggedInDeveloper ? "bi-person-check" : "bi-person-lock"}`}></i>
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-sm border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded bg-red-600 btn-square text-black mr-3 hover:bg-yellow-400 hover:border-black"
+              >
+                {isLoggedIn || isLoggedInDeveloper ? <BsPersonCheck /> : <BsPersonLock />}
               </div>
               <ul tabIndex={0} className="dropdown-content menu text-black z-[1] w-40 p-2 mr-2 mt-3 bg-blue-500 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded-md">
                 {isLoggedIn || isLoggedInDeveloper ? (
@@ -553,7 +555,7 @@ const Layout = ({ children }) => {
                     className="btn join-item shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-black border-2 bg-red-600 hover:border-black text-black hover:bg-yellow-400 tooltip tooltip-left before:w-[12rem] before:content-[attr(data-tip)] rounded-lg"
                     data-tip="Works only on certain browsers, e.g., Chrome."
                   >
-                    <i className="bi bi-info-circle"></i>
+                    <BsInfoCircle />
                   </button>
                   <button
                     onClick={() => {
@@ -562,14 +564,13 @@ const Layout = ({ children }) => {
                     }}
                     className="btn join-item shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-black border-2 bg-yellow-400 hover:border-black text-black hover:bg-red-600 rounded-lg relative"
                   >
-                    <i className="bi bi-bell relative">
-                      {isRedDotVisible && (
-                        <span
-                          id="redDot"
-                          className="absolute -top-1 -right-1.5 w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse ring-1 ring-red-600"
-                        ></span>
-                      )}
-                    </i>
+                    <BsBell className="relative" />
+                    {isRedDotVisible && (
+                      <span
+                        id="redDot"
+                        className="absolute top-2.5 right-2.5 w-2 h-2 bg-red-600 rounded-full animate-pulse ring-1 ring-red-600"
+                      ></span>
+                    )}
                   </button>
                 </div>
                 <div className="flex justify-center items-center mt-6 cursor-pointer" onClick={() => document.getElementById('contributors').showModal()}>
@@ -654,7 +655,7 @@ const Layout = ({ children }) => {
             <div className="grid grid-flow-col gap-4">
               {socialLinks.map((social, index) => (
                 <a key={index} className="btn bg-yellow-400 btn-circle hover:bg-red-600 text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black hover:border-black" href={social.href}>
-                  <i className={`bi ${social.icon} text-xl`}></i>
+                  <social.icon className="text-xl" />
                 </a>
               ))}
             </div>
@@ -666,25 +667,25 @@ const Layout = ({ children }) => {
           </aside>
         </footer>
         {router.pathname !== '/dev/dashboard' && (
-          <div className="btm-nav btm-nav-xs bg-base-100 py-8 !z-50">
+          <div className="btm-nav btm-nav-md bg-base-100">
             <Link href="/bios" className={isActive('/bios') ? 'text-blue-500' : ''}>
-              <i className="bi bi-nut"></i>
+              <BsNut />
               <span className="btm-nav-label">BIOS</span>
             </Link>
             <Link href="/memory" className={isActive('/memory') ? 'text-blue-500' : ''}>
-              <i className="bi bi-sd-card"></i>
+              <BsSdCard />
               <span className="btm-nav-label">MEMORY</span>
             </Link>
             <Link href="/" className={isActive('/') ? 'text-blue-500' : ''}>
-              <i className="bi bi-house-door"></i>
+              <BsHouseDoor />
               <span className="btm-nav-label ">HOME</span>
             </Link>
             <Link href="/emulator" className={isEmulatorActive('/emulator') ? ' text-blue-500' : ''}>
-              <i className="bi bi-joystick"></i>
+              <BsJoystick />
               <span className="btm-nav-label">EMULATOR</span>
             </Link>
             <Link href="/rom" className={isRomActive() ? ' text-blue-500' : ''}>
-              <i className="bi bi-file-earmark-zip"></i>
+              <BsFileEarmarkZip />
               <span className="btm-nav-label">ROM</span>
             </Link>
           </div>
