@@ -135,7 +135,7 @@ const BIOSPage = () => {
                                         {loading ? (
                                             <tr>
                                                 <td colSpan="3" className="text-center py-3">
-                                                    Loading...
+                                                <span className="loading loading-spinner loading-xs"></span>
                                                 </td>
                                             </tr>
                                         ) : error ? (

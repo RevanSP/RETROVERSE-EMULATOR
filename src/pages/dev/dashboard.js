@@ -312,103 +312,103 @@ const Dashboard = ({ }) => {
     }
   };
 
-  const createGame = async (event) => {
-    event.preventDefault();
+    const createGame = async (event) => {
+      event.preventDefault();
 
-    setIsSubmitting(true);
+      setIsSubmitting(true);
 
-    try {
-      const gameData = {
-        title,
-        publisher,
-        gameLink,
-        iframeLink,
-        core,
-        description,
-        cover
-      };
+      try {
+        const gameData = {
+          title,
+          publisher,
+          gameLink,
+          iframeLink,
+          core,
+          description,
+          cover
+        };
 
-      const newGameRef = await addDoc(collection(db, "games"), gameData);
-      console.log("Game created with ID: ", newGameRef.id);
+        const newGameRef = await addDoc(collection(db, "games"), gameData);
+        console.log("Game created with ID: ", newGameRef.id);
 
-      setTitle('');
-      setPublisher('');
-      setGameLink('');
-      setIframeLink('');
-      setCore('');
-      setDescription('');
-      setCover(null);
+        setTitle('');
+        setPublisher('');
+        setGameLink('');
+        setIframeLink('');
+        setCore('');
+        setDescription('');
+        setCover(null);
 
-      document.getElementById("add-update_games").close();
-      fetchGames();
-      handleToast("Game successfully created!");
-    } catch (error) {
-      console.error("Error adding document: ", error);
-      handleToast("Failed to create game. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+        document.getElementById("add-update_games").close();
+        fetchGames();
+        handleToast("Game successfully created!");
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        handleToast("Failed to create game. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
 
-  const updateGame = async (event) => {
-    event.preventDefault();
+    const updateGame = async (event) => {
+      event.preventDefault();
 
-    setIsSubmitting(true);
+      setIsSubmitting(true);
 
-    try {
-      const gameRef = doc(db, "games", currentGameId);
-      const gameData = {
-        title,
-        publisher,
-        gameLink,
-        iframeLink,
-        core,
-        description,
-        cover
-      };
+      try {
+        const gameRef = doc(db, "games", currentGameId);
+        const gameData = {
+          title,
+          publisher,
+          gameLink,
+          iframeLink,
+          core,
+          description,
+          cover
+        };
 
-      await updateDoc(gameRef, gameData);
-      console.log("Game updated with ID: ", currentGameId);
+        await updateDoc(gameRef, gameData);
+        console.log("Game updated with ID: ", currentGameId);
 
-      setTitle('');
-      setPublisher('');
-      setGameLink('');
-      setIframeLink('');
-      setCore('');
-      setDescription('');
-      setCover(null);
+        setTitle('');
+        setPublisher('');
+        setGameLink('');
+        setIframeLink('');
+        setCore('');
+        setDescription('');
+        setCover(null);
 
-      document.getElementById("add-update_games").close();
-      fetchGames();
-      handleToast("Game successfully updated!");
-    } catch (error) {
-      console.error("Error updating document: ", error);
-      handleToast("Failed to update game. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+        document.getElementById("add-update_games").close();
+        fetchGames();
+        handleToast("Game successfully updated!");
+      } catch (error) {
+        console.error("Error updating document: ", error);
+        handleToast("Failed to update game. Please try again.");
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
 
-  const editGame = (game) => {
-    setIsEditGameMode(true);
-    setCurrentGameId(game.id);
-    setTitle(game.title);
-    setPublisher(game.publisher);
-    setGameLink(game.gameLink);
-    setIframeLink(game.iframeLink);
-    setCore(game.core);
-    setDescription(game.description);
-    setCover(game.cover);
-    document.getElementById("add-update_games").showModal();
-  };
+    const editGame = (game) => {
+      setIsEditGameMode(true);
+      setCurrentGameId(game.id);
+      setTitle(game.title);
+      setPublisher(game.publisher);
+      setGameLink(game.gameLink);
+      setIframeLink(game.iframeLink);
+      setCore(game.core);
+      setDescription(game.description);
+      setCover(game.cover);
+      document.getElementById("add-update_games").showModal();
+    };
 
-  const handleFormSubmit = (event) => {
-    if (isEditGameMode) {
-      updateGame(event);
-    } else {
-      createGame(event);
-    }
-  };
+    const handleFormSubmit = (event) => {
+      if (isEditGameMode) {
+        updateGame(event);
+      } else {
+        createGame(event);
+      }
+    };
 
   const [selectedGames, setSelectedGames] = useState(new Set());
   const [isDeletingGames, setIsDeletingGames] = useState(false);

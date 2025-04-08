@@ -68,6 +68,12 @@ const EmulatorPage = () => {
 
   const isImportRomVisible = searchQuery === "";
 
+  const [loadingSystem, setLoadingSystem] = useState(null);
+
+  const handleLinkClick = (system) => {
+    setLoadingSystem(system);
+  };
+
   return (
     <>
       <Head>
@@ -138,7 +144,7 @@ const EmulatorPage = () => {
                   key={system}
                   className={`card rounded-lg border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden flex flex-col ${colorVariants[index % colorVariants.length]}`}
                 >
-                  <Link href={`/emulator/${system}`} className="absolute inset-0 z-10">
+                  <Link href={`/emulator/${system}`} className="absolute inset-0 z-10" onClick={() => handleLinkClick(system)}>
                     <div className="card-body relative z-10 flex justify-center items-center h-full">
                       <div
                         className={`absolute inset-0 bg-cover bg-center opacity-20 filter grayscale transition-opacity duration-300 ${imagesLoaded[image]}`}
@@ -148,7 +154,13 @@ const EmulatorPage = () => {
                         }}
                       ></div>
                       <div className="flex flex-col items-center text-black z-50">
-                        <h1 className="text-center font-extrabold lg:text-lg text-xs">{alias}</h1>
+                        <h1 className="text-center font-extrabold lg:text-lg text-xs">
+                          {loadingSystem === system ? (
+                            <span className="loading loading-spinner loading-xl"></span>
+                          ) : (
+                            alias
+                          )}
+                        </h1>
                       </div>
                     </div>
                   </Link>

@@ -55,6 +55,12 @@ const ROMPage = () => {
         return a.alias.localeCompare(b.alias);
     });
 
+    const [loadingSystem, setLoadingSystem] = useState(null);
+
+    const handleLinkClick = (system) => {
+        setLoadingSystem(system);
+    };
+
     return (
         <>
             <Head>
@@ -111,11 +117,12 @@ const ROMPage = () => {
                         )}
                         <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-7 gap-3" style={{ gridAutoRows: 'minmax(145px, auto)' }}>
                             {sortedSystems.map(({ system, alias, image }) => (
-                                <div data-aos="fade-up"
+                                <div
+                                    data-aos="fade-up"
                                     key={system}
                                     className="card rounded-lg bg-red-600 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden flex flex-col"
                                 >
-                                    <Link href={`/rom/${system}`} className="absolute inset-0 z-10">
+                                    <Link href={`/rom/${system}`} className="absolute inset-0 z-10" onClick={() => handleLinkClick(system)}>
                                         <div className="card-body relative z-10 flex justify-center items-center h-full">
                                             <div
                                                 className={`absolute inset-0 bg-cover bg-center opacity-20 filter grayscale transition-opacity duration-300 ${imagesLoaded[image]}`}
@@ -126,7 +133,11 @@ const ROMPage = () => {
                                             ></div>
                                             <div className="flex flex-col items-center text-black z-50">
                                                 <h1 className="text-center font-extrabold lg:text-lg text-xs">
-                                                    {alias}
+                                                    {loadingSystem === system ? (
+                                                        <span className="loading loading-spinner loading-xl"></span>
+                                                    ) : (
+                                                        alias
+                                                    )}
                                                 </h1>
                                             </div>
                                         </div>
