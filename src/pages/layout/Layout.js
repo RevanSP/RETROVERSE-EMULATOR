@@ -670,23 +670,23 @@ const Layout = ({ children }) => {
           <div className="btm-nav btm-nav-md bg-base-100">
             <Link href="/bios" className={isActive('/bios') ? 'text-blue-500' : ''}>
               <BsNut />
-              <span className="btm-nav-label">BIOS</span>
+              <span className="!text-xs btm-nav-label">BIOS</span>
             </Link>
             <Link href="/memory" className={isActive('/memory') ? 'text-blue-500' : ''}>
               <BsSdCard />
-              <span className="btm-nav-label">MEMORY</span>
+              <span className="!text-xs btm-nav-label">MEMORY</span>
             </Link>
             <Link href="/" className={isActive('/') ? 'text-blue-500' : ''}>
               <BsHouseDoor />
-              <span className="btm-nav-label ">HOME</span>
+              <span className="!text-xs btm-nav-label ">HOME</span>
             </Link>
             <Link href="/emulator" className={isEmulatorActive('/emulator') ? ' text-blue-500' : ''}>
               <BsJoystick />
-              <span className="btm-nav-label">EMULATOR</span>
+              <span className="!text-xs btm-nav-label">EMULATOR</span>
             </Link>
             <Link href="/rom" className={isRomActive() ? ' text-blue-500' : ''}>
               <BsFileEarmarkZip />
-              <span className="btm-nav-label">ROM</span>
+              <span className="!text-xs btm-nav-label">ROM</span>
             </Link>
           </div>
         )}

@@ -285,7 +285,7 @@ const CustomROM = () => {
                             data-tip="Recommended: Upload your file directly instead of using a link."
                             className="tooltip bg-red-600 mt-9 rounded btn-sm btn-square hover:border-black border-2 border-black hover:bg-yellow-400 tooltip-left shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] before:w-[10rem] before:content-[attr(data-tip)]"
                         >
-                            <BsInfoLg />
+                            <BsInfoLg className="ml-2" />
                         </button>
                     </div>
                     <div className="flex space-x-2.5">
