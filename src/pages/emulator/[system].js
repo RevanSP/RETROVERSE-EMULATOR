@@ -286,7 +286,7 @@ const SystemPage = ({ games }) => {
                                 className="btn btn-sm text-xs join-item border-2 border-black bg-yellow-400 rounded text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-blue-500 hover:border-black btn-square tooltip tooltip-left"
                                 data-tip={isControllerConnected ? "CONTROLLER CONNECTED" : "CONTROLLER DISCONNECTED"}
                             >
-                                {isControllerConnected ? <BsCheckCircle /> : <BsXCircle />}
+                                {isControllerConnected ? <BsCheckCircle className="ml-2" /> : <BsXCircle className="ml-2" />}
                             </button>
                         </div>
                     </div>
