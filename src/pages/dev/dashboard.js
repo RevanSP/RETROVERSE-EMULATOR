@@ -6,7 +6,7 @@ import Link from "next/link";
 import { UploadDropzone } from "@/utils/uploadthing";
 import "@uploadthing/react/styles.css";
 import imageCompression from "browser-image-compression";
-import { BsBuilding, BsCheck, BsChevronDoubleLeft, BsChevronDoubleRight, BsChevronLeft, BsChevronRight, BsCloudUpload, BsController, BsFillTrashFill, BsGrid, BsHouseDoor, BsLink45Deg, BsPencil, BsPlusCircleDotted, BsSearch, BsXCircle } from "react-icons/bs";
+import { BsBuilding, BsCheck, BsChevronDoubleLeft, BsChevronDoubleRight, BsChevronLeft, BsChevronRight, BsCloudUpload, BsController, BsFillTrashFill, BsGrid, BsHouseDoor, BsImage, BsLink45Deg, BsPencil, BsPlusCircleDotted, BsSearch, BsXCircle } from "react-icons/bs";
 
 const Dashboard = ({ }) => {
   const [activeTab, setActiveTab] = useState('files-collection');
@@ -901,6 +901,20 @@ const Dashboard = ({ }) => {
           </div>
         </div>
       </dialog>
+      <dialog id="img_convert" className="modal">
+        <div className="modal-box rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black bg-red-600 w-11/12 max-w-full">
+          <form method="dialog">
+            <button className="btn text-black btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+          </form>
+          <h3 className="font-bold text-black text-lg">IMAGE TOOLS</h3>
+          <div className="mockup-browser bg-blue-500 border-black border-2 mt-4">
+            <div className="mockup-browser-toolbar">
+              <div className="input !bg-yellow-400 !border-2 border-black">https://imgs-tools.vercel.app</div>
+            </div>
+            <iframe src="https://imgs-tools.vercel.app" className="h-[800px] w-full border-t-4 border-black" style={{ zoom: '0.7' }} />
+          </div>
+        </div>
+      </dialog>
       <dialog ref={modalDeleteRef} id="delete_confirm" className="modal">
         <div className="modal-box rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black bg-red-600">
           <form method="dialog">
@@ -1018,6 +1032,11 @@ const Dashboard = ({ }) => {
                   />
                   <BsSearch />
                 </label>
+                <button onClick={() => document.getElementById('img_convert').showModal()}
+                  className={`btn btn-sm btn-square text-black bg-base-300 hover:border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-none`}
+                >
+                  <BsImage />
+                </button>
                 <button
                   onClick={() => openDeleteModal()}
                   className={`btn btn-sm btn-square text-black bg-red-600 hover:bg-yellow-400 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-none`}
@@ -1169,6 +1188,11 @@ const Dashboard = ({ }) => {
                   />
                   <BsSearch />
                 </label>
+                <button onClick={() => document.getElementById('img_convert').showModal()}
+                  className={`btn btn-sm btn-square text-black bg-base-300 hover:border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-none`}
+                >
+                  <BsImage />
+                </button>
                 <button
                   onClick={openDeleteConfirmDialog}
                   disabled={isDeleteButtonDisabled}
@@ -1324,6 +1348,11 @@ const Dashboard = ({ }) => {
                   />
                   <BsSearch />
                 </label>
+                <button onClick={() => document.getElementById('img_convert').showModal()}
+                  className={`btn btn-sm btn-square text-black bg-base-300 hover:border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-none`}
+                >
+                  <BsImage />
+                </button>
                 <button
                   className={`btn btn-sm btn-square text-black bg-red-600 hover:bg-yellow-400 hover:border-black hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black -ml-2 rounded-none`}
                   onClick={handleMultipleDelete}
