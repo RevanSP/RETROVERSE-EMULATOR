@@ -7,6 +7,7 @@ import { UploadDropzone } from "@/utils/uploadthing";
 import "@uploadthing/react/styles.css";
 import imageCompression from "browser-image-compression";
 import { BsBuilding, BsCheck, BsChevronDoubleLeft, BsChevronDoubleRight, BsChevronLeft, BsChevronRight, BsCloudUpload, BsController, BsFillTrashFill, BsGrid, BsHouseDoor, BsImage, BsLink45Deg, BsPencil, BsPlusCircleDotted, BsSearch, BsXCircle } from "react-icons/bs";
+import { FullscreenModal } from "@/components/FullscreenModal";
 
 const Dashboard = ({ }) => {
   const [activeTab, setActiveTab] = useState('files-collection');
@@ -787,98 +788,92 @@ const Dashboard = ({ }) => {
           />
         </div>
       </dialog>
-      <dialog id="add-update_games" className="modal">
-        <div className="modal-box rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black bg-yellow-400 w-11/12 max-w-full">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-black">✕</button>
-          </form>
-          <h3 className="font-bold text-lg mb-4 text-black">{isEditGameMode ? "UPDATE GAME" : "ADD GAME"}</h3>
-          <form onSubmit={handleFormSubmit}>
-            <label className="input input-sm text-xs input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4 bg-base-300">
-              <BsController />
-              <input
-                type="text"
-                className="grow"
-                placeholder="Title Game ..."
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-            </label>
-            <label className="input input-sm text-xs input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4 bg-base-300">
-              <BsBuilding />
-              <input
-                type="text"
-                className="grow"
-                placeholder="Publisher/Developer ..."
-                value={publisher}
-                onChange={(e) => setPublisher(e.target.value)}
-                required
-              />
-            </label>
-            <label className="form-control w-full mb-4">
-              <div className="label">
-                <span className="label-text text-black">COVER</span>
-                <span className="label-text-alt text-black">IMAGE</span>
-              </div>
-              <input
-                type="file"
-                className="file-input file-input-bordered w-full join-item file-input-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black bg-base-300"
-                accept="image/*"
-                onChange={handleFileReplace}
-              />
-            </label>
-            <div className="join w-full shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4">
-              <input
-                className="input input-bordered w-full join-item input-sm text-xs border-r-2 border-black bg-base-300"
-                placeholder="Games Link (ZIP) ..."
-                value={gameLink}
-                onChange={(e) => setGameLink(e.target.value)}
-                required
-              />
-              <input
-                className="input input-bordered w-full join-item input-sm text-xs border-l-2 border-black bg-base-300"
-                placeholder="Iframe Gameplay/Trailer/Cutscene Games ..."
-                value={iframeLink}
-                onChange={(e) => setIframeLink(e.target.value)}
-                required
-              />
-              <select
-                className="select uppercase select-bordered join-item select-sm border-black bg-base-300 w-full"
-                value={core}
-                onChange={(e) => setCore(e.target.value)}
-                required
-              >
-                <option value="" disabled>CORES</option>
-                {cores.map((coreData, index) => (
-                  <option key={index} value={coreData.system}>
-                    {coreData.core} - {coreData.system}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <textarea
-              className="bg-base-300 textarea-xs textarea textarea-bordered w-full shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4"
-              placeholder="Description ..."
-              rows={20}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+      <FullscreenModal title={isEditGameMode ? "UPDATE GAME" : "ADD GAME"} id="add-update_games">
+        <form onSubmit={handleFormSubmit} className="mt-4">
+          <label className="input input-sm text-xs input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4 bg-base-300">
+            <BsController />
+            <input
+              type="text"
+              className="grow"
+              placeholder="Title Game ..."
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               required
-            ></textarea>
-            <button
-              className="bg-blue-500 border-2 border-black text-black hover:border-black hover:bg-red-600 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] w-full btn"
-              type="submit"
-              disabled={isSubmitting}
+            />
+          </label>
+          <label className="input input-sm text-xs input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4 bg-base-300">
+            <BsBuilding />
+            <input
+              type="text"
+              className="grow"
+              placeholder="Publisher/Developer ..."
+              value={publisher}
+              onChange={(e) => setPublisher(e.target.value)}
+              required
+            />
+          </label>
+          <label className="form-control w-full mb-4">
+            <div className="label">
+              <span className="label-text text-black">COVER</span>
+              <span className="label-text-alt text-black">IMAGE</span>
+            </div>
+            <input
+              type="file"
+              className="file-input file-input-bordered w-full join-item file-input-sm shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black bg-base-300"
+              accept="image/*"
+              onChange={handleFileReplace}
+            />
+          </label>
+          <div className="join w-full shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4">
+            <input
+              className="input input-bordered w-full join-item input-sm text-xs border-r-2 border-black bg-base-300"
+              placeholder="Games Link (ZIP) ..."
+              value={gameLink}
+              onChange={(e) => setGameLink(e.target.value)}
+              required
+            />
+            <input
+              className="input input-bordered w-full join-item input-sm text-xs border-l-2 border-black bg-base-300"
+              placeholder="Iframe Gameplay/Trailer/Cutscene Games ..."
+              value={iframeLink}
+              onChange={(e) => setIframeLink(e.target.value)}
+              required
+            />
+            <select
+              className="select uppercase select-bordered join-item select-sm border-black bg-base-300 w-full"
+              value={core}
+              onChange={(e) => setCore(e.target.value)}
+              required
             >
-              {isSubmitting ? (
-                <span className="loading loading-spinner loading-xs"></span>
-              ) : (
-                'SUBMIT'
-              )}
-            </button>
-          </form>
-        </div>
-      </dialog>
+              <option value="" disabled>CORES</option>
+              {cores.map((coreData, index) => (
+                <option key={index} value={coreData.system}>
+                  {coreData.core} - {coreData.system}
+                </option>
+              ))}
+            </select>
+          </div>
+          <textarea
+            className="bg-base-300 textarea-xs textarea textarea-bordered w-full shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4"
+            placeholder="Description ..."
+            rows={20}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          ></textarea>
+          <button
+            className="bg-blue-500 border-2 border-black text-black hover:border-black hover:bg-red-600 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] w-full btn"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <span className="loading loading-spinner loading-xs"></span>
+            ) : (
+              'SUBMIT'
+            )}
+          </button>
+        </form>
+      </FullscreenModal>
       <dialog id="delete_confirm2" className="modal">
         <div className="modal-box rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black bg-red-600">
           <form method="dialog">

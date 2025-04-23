@@ -8,6 +8,7 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { BsArrowClockwise, BsCheckCircle, BsChevronDoubleLeft, BsChevronDoubleRight, BsChevronLeft, BsChevronRight, BsController, BsGear, BsHouseDoor, BsInfoCircle, BsJoystick, BsPlayFill, BsXCircle } from "react-icons/bs";
 import Head from "next/head";
+import { FullscreenModal } from "@/components/FullscreenModal";
 
 const SystemPage = ({ games }) => {
     const router = useRouter();
@@ -245,15 +246,11 @@ const SystemPage = ({ games }) => {
                         </div>
                     </div>
                 </dialog>
-                <dialog id="controller" className="modal">
-                    <div className="modal-box bg-yellow-400 rounded-lg shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black w-11/12 max-w-full text-black">
-                        <form method="dialog">
-                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                        </form>
-                        <h3 className="font-bold text-lg mb-5">CONTROLLER TEST</h3>
+                <FullscreenModal title="CONTROLLER TEST" id="controller">
+                    <div className="mt-4">
                         <Gamepad setControllerStatus={setIsControllerConnected} />
                     </div>
-                </dialog>
+                </FullscreenModal>
                 <section className="py-8 mt-14">
                     <div className="mx-auto px-6">
                         <div className="px-4 py-0.5 border-2 border-black bg-yellow-400 rounded text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] mb-4">

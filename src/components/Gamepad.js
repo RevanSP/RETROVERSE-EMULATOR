@@ -363,7 +363,7 @@ const Gamepad = ({ setControllerStatus }) => {
                             role="alert"
                             className="alert rounded bg-red-600 text-black border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] mt-6"
                         >
-                            <BsInfoCircle/>
+                            <BsInfoCircle />
                             <span>Controller Disconnected.</span>
                         </div>
                     )}
