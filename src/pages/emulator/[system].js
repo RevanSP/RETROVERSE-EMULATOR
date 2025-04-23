@@ -247,7 +247,7 @@ const SystemPage = ({ games }) => {
                     </div>
                 </dialog>
                 <FullscreenModal title="CONTROLLER TEST" id="controller">
-                    <div className="mt-4">
+                    <div className="my-4">
                         <Gamepad setControllerStatus={setIsControllerConnected} />
                     </div>
                 </FullscreenModal>

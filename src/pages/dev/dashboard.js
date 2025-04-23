@@ -789,7 +789,7 @@ const Dashboard = ({ }) => {
         </div>
       </dialog>
       <FullscreenModal title={isEditGameMode ? "UPDATE GAME" : "ADD GAME"} id="add-update_games">
-        <form onSubmit={handleFormSubmit} className="mt-4">
+        <form onSubmit={handleFormSubmit} className="my-4">
           <label className="input input-sm text-xs input-bordered flex items-center gap-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black mb-4 bg-base-300">
             <BsController />
             <input
