@@ -102,7 +102,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-12 mt-16">
               {features.map((feature, index) => (
                 <div className="text-center" key={index}>
-                  <div className="bg-blue-500 rounded-full p-6 inline-block mb-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black text-4xl">
+                  <div className="bg-blue-500 rounded-full p-6 inline-block mb-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black text-4xl text-black">
                     {feature.icon}
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>

@@ -66,8 +66,8 @@ export function FullscreenModal({ id, title, children, className = "" }) {
         <div className={`h-full w-full ${isClosing ? "animate-scale-out" : "animate-scale-in"}`}>
           <div className="flex h-full flex-col">
             <div className="flex items-center justify-between border-b-4 border-black p-2.5 bg-red-600">
-              <h2 className="text-lg font-semibold text-orange">{title}</h2>
-              <button aria-label="Close" onClick={handleClose} className="btn btn-ghost btn-circle btn-xs text-xs text-orange">
+              <h2 className="text-lg font-semibold text-black">{title}</h2>
+              <button aria-label="Close" onClick={handleClose} className="btn btn-ghost btn-circle btn-xs text-xs text-black">
                 <BsX size={20} />
               </button>
             </div>

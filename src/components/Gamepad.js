@@ -336,7 +336,7 @@ const Gamepad = ({ setControllerStatus }) => {
             <div className="flex p-7 bg-blue-500 rounded shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border-2 border-black md:col-span-2">
                 <div className="text-center text-lg w-full">
                     <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-xl">INPUT TEST</h2>
+                        <h2 className="text-xl text-black">INPUT TEST</h2>
                         <div
                             id="rumble-on-button-press-area"
                             className="flex items-center space-x-2 text-center ml-auto"
@@ -347,7 +347,7 @@ const Gamepad = ({ setControllerStatus }) => {
                                 className="checkbox bg-red-600 border-2 border-black"
                                 disabled={controllerIndex === null}
                             />
-                            <label htmlFor="rumble-on-button-press" className="text-light">
+                            <label htmlFor="rumble-on-button-press" className="text-black">
                                 &nbsp;VIBRATION
                             </label>
                         </div>
